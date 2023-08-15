@@ -558,7 +558,7 @@ const app = {
 
     dynamicThemes: [
         {
-            name: 'Default Theme',
+            name: 'Lan Anh 2',
             img: './img/background.jpg',
             modalTheme: './img/background.jpg',
             backgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
@@ -570,7 +570,7 @@ const app = {
             backgroundModal: './background/modalThemes/modalTheme3/theme8.jpg',
         },
         {
-            name: 'Lan Anh 2',
+            name: 'Default theme',
             img: './background/backroundThemes/11.jpg',
             modalTheme: './background/backroundThemes/11.jpg',
             backgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
@@ -737,12 +737,12 @@ const app = {
 
         nextButton.onclick = () => {
             _this.nextSong()
-            audio.play()
+            // audio.play()
         }
 
         prevButton.onclick = function () {
             _this.prevSong()
-            audio.play()
+            // audio.play()
         }
 
         // handle when to click random button
