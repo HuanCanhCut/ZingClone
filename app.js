@@ -19,19 +19,19 @@ const musicControl = document.querySelector('.music-control')
 const progress = document.querySelector('.progress')
 const nextButton = document.querySelector('.btn-next')
 const prevButton = document.querySelector('.btn-prev')
+const randomButton = document.querySelector('.btn-random')
+const repeatButton = document.querySelector('.btn-repeat')
 
 const app = {
     // todo     1. Render Songs             done
     // todo     3. Play / Pause / Sweek     done
     // todo     4. CD Rotate                done
-    // todo     5. Next / Prev
+    // todo     5. Next / Prev              done
     // todo     6. Random
     // todo     7. Next or Repeat when ended
     // todo     8. Active Song
     // todo     9. Scroll active song into view
     // todo     10. Play song when to click
-
-    // config local storage
 
     songs: [
         {
@@ -419,6 +419,8 @@ const app = {
     defaultBackground: './img/background.jpg',
     defaultBackgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
     isPlaying: false,
+    isRandom: false,
+    isRepeat: false,
 
     render: function () {
         const htmls = this.songs.map((song, index) => {
@@ -742,6 +744,30 @@ const app = {
             _this.prevSong()
             audio.play()
         }
+
+        // handle when to click random button
+
+        randomButton.onclick = () => {
+            _this.isRandom = !this.isRandom
+            randomButton.classList.toggle('active', this.isRandom)
+        }
+
+        // handle when to click repeat button
+
+        repeatButton.onclick = () => {
+            _this.isRepeat = !this.isRepeat
+            repeatButton.classList.toggle('active', this.isRepeat)
+        }
+
+        // handle when song ended
+
+        audio.onended = function () {
+            if (_this.isRandom) {
+                _this.randomSong()
+            }
+
+            _this.loadCurrentSong()
+        }
     },
 
     nextSong: function () {
@@ -758,6 +784,23 @@ const app = {
         if (this.currentIndex < 0) {
             this.currentIndex = this.songs.length - 1
         }
+        this.loadCurrentSong()
+    },
+
+    playerIndexes: [],
+
+    randomSong: function () {
+        let newIndex
+
+        do {
+            newIndex = Math.floor(Math.random() * this.songs.length)
+        } while (this.playerIndexes.includes(newIndex))
+
+        console.log(newIndex)
+        if (this.playerIndexes.length === this.songs.length) {
+            this.playerIndexes = []
+        }
+
         this.loadCurrentSong()
     },
 

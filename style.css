@@ -747,6 +747,14 @@ body::-webkit-scrollbar {
     color: var(--color-pink);
 }
 
+.btn-random.active i {
+    color: var(--color-pink);
+}
+
+.btn-repeat.active i {
+    color: var(--color-pink);
+}
+
 .music-control-center-sweek input::-webkit-slider-thumb {
     accent-color: var(--color-pink);
     color: var(--color-pink);
