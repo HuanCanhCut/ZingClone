@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ZingMp3</title>
+        <link rel="stylesheet" href="style.css" />
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="shortcut icon" href="https://www.apkmirror.com/wp-content/uploads/2018/03/5ab225eee4a6e-384x384.png" />
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css" />
+    </head>
+    <script src="../devtools.js"></script>
+    <body>
+        <div id="app">
+            <div class="background"></div>
+            <div id="sidebar">
+                <div class="logo">
+                    <img src="https://sona7ns.github.io/zingmp3.vn/assets/img/sidebar-icon/logo/logo-dark.svg" alt="" />
+                </div>
+                <div class="sidebar-container">
+                    <div class="sidebar__main">
+                        <div class="sidebar__main-item active">
+                            <span><ion-icon name="play-outline"></ion-icon></span>
+                            <span> Cá Nhân</span>
+                        </div>
+                        <div class="sidebar__main-item">
+                            <span><ion-icon name="disc-outline"></ion-icon></span>
+                            <span>#zingchart</span>
+                        </div>
+                        <div class="sidebar__main-item">
+                            <span><ion-icon name="stats-chart-outline"></ion-icon></span>
+                            <span>#zingchart</span>
+                        </div>
+                        <div class="sidebar__main-item">
+                            <span> <ion-icon name="radio-outline"></ion-icon> </span>
+                            <span>Radio</span>
+                            <span class="live">LIVE</span>
+                        </div>
+                        <div class="sidebar__main-item">
+                            <span> <i class="far fa-list-alt"></i></span>
+                            <span>Theo Dõi</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar__main">
+                        <div class="sidebar__main-item">
+                            <span><ion-icon name="musical-notes-outline"></ion-icon></span>
+                            <span>Nhạc Mới</span>
+                        </div>
+                        <div class="sidebar__main-item">
+                            <span> <i class="fab fa-buromobelexperte"></i></span>
+                            <span>Thể Loại</span>
+                        </div>
+                        <div class="sidebar__main-item">
+                            <span> <ion-icon name="star-outline"></ion-icon> </span>
+                            <span>Top 100</span>
+                        </div>
+                        <div class="sidebar__main-item">
+                            <span> <i class="fas fa-photo-video"></i></span>
+                            <span>MV</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="container">
+                <nav id="header">
+                    <div class="header-item page-action">
+                        <i class="fa-sharp fa-solid fa-arrow-left"></i>
+                        <i class="fa-sharp fa-solid fa-arrow-right"></i>
+                    </div>
+                    <div class="header-item header-search">
+                        <ion-icon name="search-outline"></ion-icon>
+                        <input type="text" id="search" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..." />
+                        <div class="search-suggest hide">
+                            <div class="show-suggest-for-you">
+                                <div class="suggest-title">
+                                    <h4 class="">Gợi Ý Cho Bạn</h4>
+                                </div>
+                                <div class="list-suggest suggest-for-you">
+                                    <li>
+                                        <span class="suggest-icon"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                                        <span class="suggest-item">Tây Sơn Hào Kiệt</span>
+                                    </li>
+                                    <li>
+                                        <span class="suggest-icon"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                                        <span class="suggest-item"> Ngôi Sao Cô Đơn</span>
+                                    </li>
+                                    <li>
+                                        <span class="suggest-icon"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                                        <span class="suggest-item"> Lặng Yên</span>
+                                    </li>
+                                    <li>
+                                        <span class="suggest-icon"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                                        <span class="suggest-item">Đom Đóm</span>
+                                    </li>
+                                </div>
+                            </div>
+                            <div class="show-songs-suggest hide">
+                                <div class="show-suggest-songs">
+                                    <div class="suggest-songs-title">
+                                        <h4>Từ Khoá Liên Quan</h4>
+                                    </div>
+                                    <div class="show-suggest-body show-suggest-songs-body"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-item header-options">
+                        <div class="header-options-item header-options-theme"><i class="fa-sharp fa-solid fa-shirt"></i></div>
+                        <div class="header-options-item setting"><i class="fa-duotone fa-gear"></i></div>
+                        <div class="header-options-item avatar">
+                            <img src="./img/admin.jpg" alt="" />
+                        </div>
+                    </div>
+                </nav>
+                <div id="content">
+                    <div class="player">
+                        <div class="player-thumb">
+                            <!-- CD THUMB -->
+                            <div class="cd-thumb"></div>
+
+                            <!-- SONG INFO -->
+                            <h3 class="song-name current-song-name"></h3>
+                            <button class="player-thumb-toggle-play">Play / pause</button>
+                        </div>
+                        <div class="player-songs">
+                            <!-- CURRENT PLAYING -->
+                            <div class="current-playing">
+                                <div class="current-playing-title">
+                                    <p>BÀI HÁT</p>
+                                    <p>THỜI GIAN</p>
+                                </div>
+                                <div class="current-playing-body">
+                                    <div class="current-playing-body-info">
+                                        <div class="current-playing-body-image"></div>
+                                        <span class="current-playing-body-name current-song-name"> </span>
+                                    </div>
+                                    <div class="current-playing-body-duration">
+                                        <p class="current-song-duration"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- DANH SACH GOI Y -->
+
+                            <div class="player-list-suggest">
+                                <div class="player-list-suggest-title">
+                                    <h3>Có Thể bạn Quan Tâm</h3>
+                                </div>
+                                <li class="list-song-render"></li>
+                            </div>
+                        </div>
+                    </div>
+
+                    <audio src="" id="audio"></audio>
+                </div>
+            </div>
+
+            <div class="music-control">
+                <div class="music-control-info">
+                    <div class="music-control-info-image cd-thumb"></div>
+                    <div class="music-control-info-body">
+                        <p class="music-info-name current-song-name"></p>
+                        <p class="music-info-singer"></p>
+                    </div>
+                </div>
+                <div class="music-control-center">
+                    <div class="music-control-center-items">
+                        <div class="btn btn-repeat">
+                            <i class="fas fa-redo"></i>
+                        </div>
+                        <div class="btn btn-prev">
+                            <i class="fas fa-step-backward"></i>
+                        </div>
+                        <div class="btn btn-toggle-play">
+                            <i class="fa-sharp fa-regular fa-play"></i>
+                            <i class="fa-sharp fa-regular fa-circle-pause"></i>
+                        </div>
+                        <div class="btn btn-next">
+                            <i class="fas fa-step-forward"></i>
+                        </div>
+                        <div class="btn btn-random">
+                            <i class="fas fa-random"></i>
+                        </div>
+                    </div>
+                    <div class="music-control-center-sweek">
+                        <p>0:00</p>
+                        <input id="progress" class="progress" type="range" value="0" step="0.001" min="0" max="100" />
+                        <p>26:12</p>
+                    </div>
+                </div>
+                <div class="music-control-options">
+                    <i class="fa-solid fa-microphone"></i>
+                    <i class="fa-solid fa-volume"></i>
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- THEMES -->
+        <div class="themes hide">
+            <div class="themes-header">
+                <h2>Giao Diện</h2>
+                <button class="close-themes"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="themes-body">
+                <div class="themes-body-item themes-body-dynamic">
+                    <div class="themes-body-title">
+                        <h3>Dynamic</h3>
+                    </div>
+                    <div class="themes-body-options themes-dynamic-options"></div>
+                </div>
+            </div>
+        </div>
+        <script src="app.js"></script>
+    </body>
+</html>
