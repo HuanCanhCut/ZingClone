@@ -12,11 +12,14 @@ const togglePlayThumb = document.querySelector('.player-thumb-toggle-play')
 const currentSongsName = [...document.querySelectorAll('.current-song-name')]
 const player = document.querySelector('.player')
 const currentPlayingImage = document.querySelector('.current-playing-body-image')
-const musicInfoSinger = document.querySelector('.music-info-singer')
+const musicInfoSingers = [...document.querySelectorAll('.music-info-singer')]
 const listSongs = document.querySelector('.list-song-render')
 const currentSongDuration = document.querySelector('.current-song-duration')
 const musicControl = document.querySelector('.music-control')
 const progress = document.querySelector('.progress')
+const nextButton = document.querySelector('.btn-next')
+const prevButton = document.querySelector('.btn-prev')
+
 const app = {
     // todo     1. Render Songs             done
     // todo     3. Play / Pause / Sweek     done
@@ -28,7 +31,7 @@ const app = {
     // todo     9. Scroll active song into view
     // todo     10. Play song when to click
 
-    //? config local storage
+    // config local storage
 
     songs: [
         {
@@ -409,7 +412,9 @@ const app = {
         },
     ],
 
-    //? defined default properties
+    //
+
+    // defined default properties
     currentIndex: 0,
     defaultBackground: './img/background.jpg',
     defaultBackgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
@@ -419,10 +424,13 @@ const app = {
         const htmls = this.songs.map((song, index) => {
             song['id'] = index
             return `
-            <div class="current-playing-body">
+            <div class="current-playing-body ${this.currentIndex === index ? 'active' : ''}">
                 <div class="current-playing-body-info">
                     <div class="current-playing-body-image" style="background: url('${song.img}'); background-size: cover; background-repeat: no-repeat"></div>
-                    <span class="current-playing-body-name"> ${song.title} </span>
+                    <div class="current-playing-body-songs">
+                        <p class="current-playing-body-name current-song-name">${song.title}</p>
+                        <p class="current-playing-body-singer current-song-singer">${song.singer}</p>
+                    </div>
                 </div>
                 <div class="current-playing-body-duration">
                     <p>${song.duration}</p>
@@ -458,7 +466,10 @@ const app = {
 
         currentSongDuration.innerText = this.currentSong.duration
 
-        musicInfoSinger.innerText = this.currentSong.singer
+        musicInfoSingers.forEach((musicInfoSinger) => {
+            musicInfoSinger.innerText = this.currentSong.singer
+        })
+
         listSongs.innerHTML = this.render().join('')
     },
 
@@ -468,7 +479,7 @@ const app = {
         appElement.onclick = function (e) {
             const targetSearch = e.target.closest('.header-search')
             const tagetSuggest = e.target.closest('.search-suggest')
-            //? handle when focus input
+            // handle when focus input
             if (targetSearch || tagetSuggest) {
                 searchElement.style.borderRadius = '20px 20px 0 0'
                 searchSuggest.classList.remove('hide')
@@ -501,7 +512,7 @@ const app = {
 
                         suggestSongsBody.innerHTML = suggestSongsHtmls.join('')
 
-                        //? handle when cick songItem and render HTML view
+                        // handle when cick songItem and render HTML view
                         let listSongsSuggest = [...document.querySelectorAll('#song-suggest')]
 
                         listSongsSuggest.forEach((songItem) => {
@@ -532,7 +543,7 @@ const app = {
                         showSongsSuggest.classList.add('hide')
                     }
                 }
-                //? focus ra ngoai => hide suggest
+                // focus ra ngoai => hide suggest
             } else {
                 searchElement.style.background = '#e1e1e11a'
                 searchElement.style.borderRadius = '20px '
@@ -541,7 +552,7 @@ const app = {
         }
     },
 
-    //? THEMES
+    // THEMES
 
     dynamicThemes: [
         {
@@ -579,7 +590,7 @@ const app = {
     handleThemes: function () {
         const _this = this
         appElement.addEventListener('click', (e) => {
-            //? xu li khi click vao themes options
+            // xu li khi click vao themes options
             const targetThemesButton = e.target.closest('.header-options-theme')
             const targetThemes = e.target.closest('.themes')
             if (targetThemesButton || targetThemes) {
@@ -591,7 +602,7 @@ const app = {
                 }
                 appElement.style.filter = 'brightness(40%)'
 
-                //? render view dynamic theme
+                // render view dynamic theme
                 const dynamic = _this.dynamicThemes.map((theme) => {
                     return `
                         <div class="themes-body-options-item themes-dynamic-options-item" >
@@ -612,7 +623,7 @@ const app = {
 
         themes.addEventListener('click', (e) => {
             if (e.target.closest('.themes-dynamic-options-item')) {
-                //? handle when click dynamic theme item
+                // handle when click dynamic theme item
                 const background = document.querySelector('.background')
                 const header = document.querySelector('#header')
                 const headerSidebar = document.querySelector('.logo')
@@ -677,7 +688,7 @@ const app = {
             }
         }
 
-        //? animate web api
+        // animate web api
 
         const cdThumbAnimate = cdThumb.animate([{ transform: 'rotate(360deg)' }], {
             duration: 12000,
@@ -692,21 +703,21 @@ const app = {
         cdThumbAnimate.pause()
         musicControlAnimate.pause()
 
-        //? handle when play song
+        // handle when play song
 
         audio.onplay = function () {
             togglePlayBtn.classList.add('playing')
             cdThumbAnimate.play()
             musicControlAnimate.play()
         }
-        //? handle when pasue song
+        // handle when pasue song
         audio.onpause = function () {
             togglePlayBtn.classList.remove('playing')
             cdThumbAnimate.pause()
             musicControlAnimate.pause()
         }
 
-        //? return currentTime of song
+        // return currentTime of song
         audio.ontimeupdate = function () {
             if (audio.duration) {
                 let progressPercent = (audio.currentTime / audio.duration) * 100
@@ -714,26 +725,55 @@ const app = {
             }
         }
 
-        //? handle when sweek
+        // handle when sweek
         progress.oninput = () => {
             const sweek = (audio.duration / 100) * progress.value
             audio.currentTime = sweek
         }
+
+        // handle when to click next / prev song
+
+        nextButton.onclick = () => {
+            _this.nextSong()
+            audio.play()
+        }
+
+        prevButton.onclick = function () {
+            _this.prevSong()
+            audio.play()
+        }
+    },
+
+    nextSong: function () {
+        this.currentIndex++
+        if (this.currentIndex >= this.songs.length) {
+            this.currentIndex = 0
+        }
+
+        this.loadCurrentSong()
+    },
+
+    prevSong: function () {
+        this.currentIndex--
+        if (this.currentIndex < 0) {
+            this.currentIndex = this.songs.length - 1
+        }
+        this.loadCurrentSong()
     },
 
     start: function () {
         this.handleEvent()
 
-        //? defined current song
+        // defined current song
         this.defineProperties()
 
-        //? load img / title ... song
+        // load info / title ... song
         this.loadCurrentSong()
 
-        //? handle when search
+        // handle when search
         this.handleSearch()
 
-        //? handle when chose theme
+        // handle when chose theme
         this.handleThemes()
     },
 }

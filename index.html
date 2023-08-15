@@ -8,12 +8,10 @@
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="shortcut icon" href="https://www.apkmirror.com/wp-content/uploads/2018/03/5ab225eee4a6e-384x384.png" />
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css" />
     </head>
-    <script src="../devtools.js"></script>
     <body>
         <div id="app">
             <div class="background"></div>
@@ -138,7 +136,10 @@
                                 <div class="current-playing-body">
                                     <div class="current-playing-body-info">
                                         <div class="current-playing-body-image"></div>
-                                        <span class="current-playing-body-name current-song-name"> </span>
+                                        <div class="current-playing-body-songs">
+                                            <p class="current-playing-body-name current-song-name"></p>
+                                            <p class="current-playing-body-singer music-info-singer"></p>
+                                        </div>
                                     </div>
                                     <div class="current-playing-body-duration">
                                         <p class="current-song-duration"></p>
