@@ -208,7 +208,7 @@ body::-webkit-scrollbar {
     top: 100%;
     left: 0;
     width: 100%;
-    background: url('./background/backroundThemes/1.jpg');
+    background: url('./background/modalThemes/modalTheme3/theme1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 0 0 10px 10px;
@@ -495,7 +495,7 @@ body::-webkit-scrollbar {
     align-items: center;
     width: 40px;
     height: 40px;
-    /* background-color: #0e2855; */
+    background: url('./background/modalThemes/modalTheme3/theme1.jpg');
     border-radius: 100%;
     cursor: pointer;
 }
@@ -561,9 +561,10 @@ body::-webkit-scrollbar {
     padding-top: 90%;
     border-radius: 50%;
     overflow: hidden;
-    /* border: 2px solid var(--color-pink); */
+    border: 2px solid var(--color-pink);
     background-size: cover;
     background-repeat: no-repeat;
+    transition: all linear 0.3s;
 }
 
 .player-thumb .song-name {
@@ -701,6 +702,7 @@ body::-webkit-scrollbar {
     background-repeat: no-repeat;
     border-radius: 50%;
     margin: 0 12px;
+    transition: all linear 0.3s;
 }
 
 .music-control-info .music-info-singer {

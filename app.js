@@ -21,12 +21,20 @@ const nextButton = document.querySelector('.btn-next')
 const prevButton = document.querySelector('.btn-prev')
 const randomButton = document.querySelector('.btn-random')
 const repeatButton = document.querySelector('.btn-repeat')
+const headerOptionsItems = [...document.querySelectorAll('.header-options-item')]
+
+// animate cdthum rotate
+
+const cdThumbAnimate = cdThumb.animate([{ transform: 'rotate(360deg)' }], {
+    duration: 12000,
+    iterations: Infinity,
+})
 
 const app = {
-    // todo     1. Render Songs             done
-    // todo     3. Play / Pause / Sweek     done
-    // todo     4. CD Rotate                done
-    // todo     5. Next / Prev              done
+    // todo     1. Render Songs                         done
+    // todo     3. Play / Pause / Sweek
+    // todo     4. CD Rotate
+    // todo     5. Next / Prev                          done
     // todo     6. Random
     // todo     7. Next or Repeat when ended
     // todo     8. Active Song
@@ -42,7 +50,7 @@ const app = {
             img: 'https://vtv1.mediacdn.vn/thumb_w/640/2022/9/21/poster-karik-only-c-16637279213761078057270.jpeg',
         },
         {
-            img: './img/discover/ctn2/1.webp',
+            img: 'https://baochauelec.com/cdn/images/tin-tuc/loi-bat-hat-waiting-for-you-ban-chuan.jpg',
             title: 'Waiting For You',
             singer: 'MONO',
             pathSong: './songs/vip/WaitingForYou.mp3',
@@ -62,7 +70,6 @@ const app = {
             duration: '05:06',
             img: 'https://i.ytimg.com/vi/orFNbppc6_0/maxresdefault.jpg',
         },
-
         {
             img: './img/songs/0.webp',
             title: 'Anh Đã Lạc Vào',
@@ -71,7 +78,7 @@ const app = {
             duration: '04:27',
         },
         {
-            img: './img/songs/1.webp',
+            img: 'https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/c/6/d/e/c6def069a1a885c41fe479358fa7c506.jpg',
             title: 'Chạy Về Khóc Với Anh',
             singer: 'Erik, Duzme Remix',
             pathSong: './songs/list-song/1.mp3',
@@ -96,7 +103,7 @@ const app = {
             singer: 'Jack - J97',
             pathSong: './songs/list-song/dd.mp3',
             duration: '06:21',
-            img: 'https://i.ytimg.com/vi/4CCGI83vOVo/maxresdefault.jpg',
+            img: ' https://i.ytimg.com/vi/4CCGI83vOVo/maxresdefault.jpg',
         },
         {
             img: './img/songs/3.webp',
@@ -200,32 +207,16 @@ const app = {
         },
 
         // =======================================
-        {
-            img: './img/discover/ctn2/0.webp',
-            title: 'Giữ Lại Được Chi',
-            singer: 'Renddy',
-            time: '2 ngày trước',
-            pathSong: '',
-            type: 'vip',
-            duration: '04:06',
-        },
+
         {
             title: 'Lỡ Hẹn Với Dòng Lam',
             singer: 'Thái Học',
             pathSong: './songs/list-song/lhdsl.mp3',
             duration: '05:43',
             type: 'vip',
-            img: 'https://tse2.mm.bing.net/th?id=OIP.wQ8YaC8YRnibBMiypyK0XwEsEs&pid=Api&P=0',
+            img: 'https://i.ytimg.com/vi/HELjXqg9Ht0/sddefault.jpg',
         },
-        {
-            img: './img/discover/ctn2/2.webp',
-            title: 'Talking to Yourself',
-            singer: 'Carly Rae Jepsen',
-            time: '2 ngày trước',
-            pathSong: '',
-            type: 'vip',
-            duration: '04:07',
-        },
+
         {
             img: './img/discover/ctn2/3.jpg',
             title: 'Into Your Arms',
@@ -235,15 +226,7 @@ const app = {
             type: 'free',
             duration: '02:07',
         },
-        {
-            img: './img/discover/ctn2/8.webp',
-            title: 'LUMINOUS',
-            singer: 'LOONA',
-            time: '2 ngày trước',
-            pathSong: '',
-            type: 'vip',
-            duration: '03:06',
-        },
+
         {
             img: './img/discover/ctn2/4.webp',
             title: 'Thế Giới Trong Em',
@@ -279,24 +262,6 @@ const app = {
             pathSong: './songs/vip/deroitonthuong.mp3',
             type: 'vip',
             duration: '05:17',
-        },
-        {
-            img: './img/discover/ctn2/9.webp',
-            title: 'Hay Là Trăng Nói',
-            singer: 'DatKaa,QT Beatz',
-            time: '2 ngày trước',
-            pathSong: '',
-            type: 'vip',
-            duration: '05:07',
-        },
-        {
-            img: './img/discover/ctn2/10.webp',
-            title: 'Forget Me',
-            singer: 'Lewis Capaldi',
-            time: '3 ngày trước',
-            pathSong: '',
-            type: 'vip',
-            duration: '04:08',
         },
         {
             img: './img/discover/ctn2/11.jpg',
@@ -373,15 +338,6 @@ const app = {
             type: 'free',
             duration: '4:22',
         },
-        {
-            img: './img/playListSongs/ds.jfif',
-            title: 'Jaymes Young',
-            singer: 'Infinity',
-            time: '6 ngày trước',
-            pathSong: './songs/us/Vietsub - Infinity - Jaymes Young - Nhạc Hot TikTok - Lyrics Video.mp3',
-            type: 'free',
-            duration: '4:22',
-        },
     ],
 
     listSinger: [
@@ -416,8 +372,8 @@ const app = {
 
     // defined default properties
     currentIndex: 0,
-    defaultBackground: './img/background.jpg',
-    defaultBackgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
+    defaultBackground: './background/backgroundThemes/11.jpg',
+    defaultBackgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
     isPlaying: false,
     isRandom: false,
     isRepeat: false,
@@ -453,26 +409,73 @@ const app = {
     },
 
     loadCurrentSong: function () {
-        audio.src = this.currentSong.pathSong
-
+        audio.setAttribute('src', this.currentSong.pathSong)
         currentSongsName.forEach((currentSongName) => {
             currentSongName.innerText = this.currentSong.title
         })
+        musicInfoSingers.forEach((musicInfoSinger) => {
+            musicInfoSinger.innerText = this.currentSong.singer
+        })
         currentPlayingImage.style.background = `url('${this.currentSong.img}')`
         currentPlayingImage.style.backgroundSize = 'cover'
-
         cdThumbs.forEach((cdThumb) => {
             cdThumb.style.background = `url('${this.currentSong.img}')`
             cdThumb.style.backgroundSize = 'cover'
         })
-
         currentSongDuration.innerText = this.currentSong.duration
 
-        musicInfoSingers.forEach((musicInfoSinger) => {
-            musicInfoSinger.innerText = this.currentSong.singer
-        })
-
         listSongs.innerHTML = this.render().join('')
+    },
+
+    handleEvent: function () {
+        const _this = this
+
+        const avata = document.querySelector('.avatar')
+        avata.onclick = function () {
+            location.assign('https://www.facebook.com/HuanPG05')
+        }
+
+        togglePlayBtn.onclick = function () {
+            _this.isPlaying ? audio.pause() : audio.play()
+        }
+
+        audio.onplay = function () {
+            togglePlayBtn.classList.add('playing')
+            _this.isPlaying = true
+        }
+
+        audio.onpause = function () {
+            togglePlayBtn.classList.remove('playing')
+            _this.isPlaying = false
+        }
+
+        nextButton.onclick = function () {
+            _this.nextSong()
+            audio.play()
+        }
+
+        prevButton.onclick = function () {
+            _this.prevSong()
+            audio.play()
+        }
+    },
+
+    nextSong: function () {
+        this.currentIndex++
+        if (this.currentIndex >= this.songs.length) {
+            this.currentIndex = 0
+        }
+
+        this.loadCurrentSong()
+    },
+
+    prevSong: function () {
+        this.currentIndex--
+        if (this.currentIndex < 0) {
+            this.currentIndex = this.songs.length - 1
+        }
+
+        this.loadCurrentSong()
     },
 
     handleSearch: function () {
@@ -519,10 +522,8 @@ const app = {
 
                         listSongsSuggest.forEach((songItem) => {
                             songItem.onclick = function (e) {
-                                _this.isPlaying = false
-                                if ((_this.isPlaying = false)) {
-                                    cdThumbAnimate.pause()
-                                    musicControlAnimate.pause()
+                                if (audio.play()) {
+                                    _this.isPlaying = false
                                 }
                                 togglePlayBtn.classList.remove('playing')
                                 const selectedSong = Array.from(filterSearch).find((songSelect) => {
@@ -660,9 +661,17 @@ const app = {
                         background: `url('${_this.defaultBackgroundModal}')`,
                         backgroundSize: 'cover',
                     })
+
                     Object.assign(musicControl.style, {
                         background: `url('${_this.defaultBackgroundModal}')`,
                         backgroundSize: 'cover',
+                    })
+
+                    headerOptionsItems.forEach((headerOptionsItem) => {
+                        Object.assign(headerOptionsItem.style, {
+                            background: `url('${_this.defaultBackgroundModal}')`,
+                            backgroundSize: 'cover',
+                        })
                     })
 
                     themes.classList.add('hide')
@@ -672,146 +681,15 @@ const app = {
         })
     },
 
-    handleEvent: function () {
-        const _this = this
-
-        //todo chuyen huong den fb ca nhan khi click vao avatar
-
-        document.querySelector('.avatar').onclick = function () {
-            location.assign('https://www.facebook.com/huandev.140105?mibextid=ZbWKwL')
-        }
-
-        togglePlayBtn.onclick = function () {
-            _this.isPlaying = !_this.isPlaying
-            if (_this.isPlaying) {
-                audio.play()
-            } else {
-                audio.pause()
-            }
-        }
-
-        // animate web api
-
-        const cdThumbAnimate = cdThumb.animate([{ transform: 'rotate(360deg)' }], {
-            duration: 12000,
-            iterations: Infinity,
-        })
-
-        const musicControlAnimate = musicControlCurrentImage.animate([{ transform: 'rotate(360deg)' }], {
-            duration: 12000,
-            iterations: Infinity,
-        })
-
-        cdThumbAnimate.pause()
-        musicControlAnimate.pause()
-
-        // handle when play song
-
-        audio.onplay = function () {
-            togglePlayBtn.classList.add('playing')
-            cdThumbAnimate.play()
-            musicControlAnimate.play()
-        }
-        // handle when pasue song
-        audio.onpause = function () {
-            togglePlayBtn.classList.remove('playing')
-            cdThumbAnimate.pause()
-            musicControlAnimate.pause()
-        }
-
-        // return currentTime of song
-        audio.ontimeupdate = function () {
-            if (audio.duration) {
-                let progressPercent = (audio.currentTime / audio.duration) * 100
-                progress.value = progressPercent
-            }
-        }
-
-        // handle when sweek
-        progress.oninput = () => {
-            const sweek = (audio.duration / 100) * progress.value
-            audio.currentTime = sweek
-        }
-
-        // handle when to click next / prev song
-
-        nextButton.onclick = () => {
-            _this.nextSong()
-            // audio.play()
-        }
-
-        prevButton.onclick = function () {
-            _this.prevSong()
-            // audio.play()
-        }
-
-        // handle when to click random button
-
-        randomButton.onclick = () => {
-            _this.isRandom = !this.isRandom
-            randomButton.classList.toggle('active', this.isRandom)
-        }
-
-        // handle when to click repeat button
-
-        repeatButton.onclick = () => {
-            _this.isRepeat = !this.isRepeat
-            repeatButton.classList.toggle('active', this.isRepeat)
-        }
-
-        // handle when song ended
-
-        audio.onended = function () {
-            if (_this.isRandom) {
-                _this.randomSong()
-            }
-
-            _this.loadCurrentSong()
-        }
-    },
-
-    nextSong: function () {
-        this.currentIndex++
-        if (this.currentIndex >= this.songs.length) {
-            this.currentIndex = 0
-        }
-
-        this.loadCurrentSong()
-    },
-
-    prevSong: function () {
-        this.currentIndex--
-        if (this.currentIndex < 0) {
-            this.currentIndex = this.songs.length - 1
-        }
-        this.loadCurrentSong()
-    },
-
-    playerIndexes: [],
-
-    randomSong: function () {
-        let newIndex
-
-        do {
-            newIndex = Math.floor(Math.random() * this.songs.length)
-        } while (this.playerIndexes.includes(newIndex))
-
-        console.log(newIndex)
-        if (this.playerIndexes.length === this.songs.length) {
-            this.playerIndexes = []
-        }
-
-        this.loadCurrentSong()
-    },
-
     start: function () {
-        this.handleEvent()
-
         // defined current song
         this.defineProperties()
 
         // load info / title ... song
         this.loadCurrentSong()
+
+        // handle event in DOM
+        this.handleEvent()
 
         // handle when search
         this.handleSearch()
@@ -843,10 +721,3 @@ function handleMarginContent() {
 }
 
 handleMarginContent()
-
-function heightcdThumb() {
-    const cdWidth = cdThumb.offsetWidth
-    cdThumb.style.height = `${cdWidth}px`
-}
-
-heightcdThumb()
