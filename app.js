@@ -41,8 +41,8 @@ const app = {
     // todo     3. Play / Pause / Sweek                 done
     // todo     4. CD Rotate                            done
     // todo     5. Next / Prev                          done
-    // todo     6. Random
-    // todo     7. Next or Repeat when ended
+    // todo     6. Random                               done
+    // todo     7. Next or Repeat when ended            done
     // todo     8. Active Song
     // todo     9. Scroll active song into view
     // todo     10. Play song when to click
@@ -62,6 +62,14 @@ const app = {
             pathSong: './songs/vip/WaitingForYou.mp3',
             duration: '04:25',
         },
+        {
+            img: 'https://avatar-ex-swe.nixcdn.com/song/2023/03/31/4/b/6/5/1680233854662_640.jpg',
+            title: 'Ba Kiếp Tình Một Kiếp Duyên',
+            singer: 'Lâm Tuấn',
+            pathSong: 'https://tainhacmienphi.mobi/download-music/284795',
+            duration: '05:52',
+        },
+
         {
             title: 'Cơn Mưa Băng Giá',
             singer: 'Noo Phước Thịnh',
@@ -490,8 +498,35 @@ const app = {
 
         randomButton.onclick = function () {
             _this.isRandom = !_this.isRandom
+            if (_this.isRandom) {
+                _this.isRepeat = false
+                repeatButton.classList.remove('active')
+            }
 
+            console.log('isRandom', _this.isRandom)
             randomButton.classList.toggle('active', _this.isRandom)
+        }
+
+        repeatButton.onclick = function () {
+            _this.isRepeat = !_this.isRepeat
+            if (_this.isRepeat) {
+                _this.isRandom = false
+                randomButton.classList.remove('active')
+            }
+            console.log('isRepeat', _this.isRepeat)
+
+            repeatButton.classList.toggle('active', _this.isRepeat)
+        }
+
+        audio.onended = function () {
+            if (_this.isRepeat) {
+                audio.play()
+            } else if (_this.isRandom) {
+                _this.randomSong()
+                audio.play()
+            } else {
+                nextButton.click()
+            }
         }
     },
 
