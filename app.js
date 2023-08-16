@@ -22,6 +22,7 @@ const prevButton = document.querySelector('.btn-prev')
 const randomButton = document.querySelector('.btn-random')
 const repeatButton = document.querySelector('.btn-repeat')
 const headerOptionsItems = [...document.querySelectorAll('.header-options-item')]
+const playListSuggests = document.querySelector('.player-list-suggest')
 
 // animate cdthum rotate
 
@@ -43,7 +44,7 @@ const app = {
     // todo     5. Next / Prev                          done
     // todo     6. Random                               done
     // todo     7. Next or Repeat when ended            done
-    // todo     8. Active Song
+    // todo     8. Active Song                          done
     // todo     9. Scroll active song into view
     // todo     10. Play song when to click
 
@@ -390,7 +391,7 @@ const app = {
         const htmls = this.songs.map((song, index) => {
             song['id'] = index
             return `
-            <div class="current-playing-body ${this.currentIndex === index ? 'active' : ''}">
+            <div class="current-playing-body ${this.currentIndex === index ? 'active' : ''}" data-index="${index}">
                 <div class="current-playing-body-info">
                     <div class="current-playing-body-image" style="background: url('${song.img}'); background-size: cover; background-repeat: no-repeat"></div>
                     <div class="current-playing-body-songs">
@@ -519,6 +520,15 @@ const app = {
                 audio.play()
             } else {
                 nextButton.click()
+            }
+        }
+
+        playListSuggests.onclick = (e) => {
+            const targetSuggest = e.target.closest('.current-playing-body:not(.active)')
+            if (targetSuggest) {
+                _this.currentIndex = Number(targetSuggest.getAttribute('data-index'))
+                _this.loadCurrentSong()
+                audio.play()
             }
         }
     },
