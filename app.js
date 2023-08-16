@@ -45,8 +45,8 @@ const app = {
     // todo     6. Random                               done
     // todo     7. Next or Repeat when ended            done
     // todo     8. Active Song                          done
-    // todo     9. Scroll active song into view
-    // todo     10. Play song when to click
+    // todo     9. Scroll active song into view         done
+    // todo     10. Play song when to click             done
 
     songs: [
         {
@@ -480,6 +480,7 @@ const app = {
             }
             _this.nextSong()
             audio.play()
+            _this.songActiveIntoView()
         }
 
         prevButton.onclick = function () {
@@ -531,6 +532,8 @@ const app = {
                 audio.play()
             }
         }
+
+        _this.songActiveIntoView()
     },
 
     nextSong: function () {
@@ -549,6 +552,24 @@ const app = {
         }
 
         this.loadCurrentSong()
+    },
+
+    songActiveIntoView: function () {
+        setTimeout(() => {
+            const songActive = document.querySelector('.current-playing-body.active')
+            const songIndex = songActive.getAttribute('data-index')
+            if (songIndex < 1) {
+                songActive.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                })
+            } else {
+                songActive.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                })
+            }
+        }, 300)
     },
 
     playerIndexes: [],
