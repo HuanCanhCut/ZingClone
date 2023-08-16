@@ -62,13 +62,6 @@ const app = {
             pathSong: './songs/vip/WaitingForYou.mp3',
             duration: '04:25',
         },
-        {
-            img: 'https://avatar-ex-swe.nixcdn.com/song/2023/03/31/4/b/6/5/1680233854662_640.jpg',
-            title: 'Ba Kiếp Tình Một Kiếp Duyên',
-            singer: 'Lâm Tuấn',
-            pathSong: 'https://tainhacmienphi.mobi/download-music/284795',
-            duration: '05:52',
-        },
 
         {
             title: 'Cơn Mưa Băng Giá',
