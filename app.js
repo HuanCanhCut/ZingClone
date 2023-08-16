@@ -38,7 +38,7 @@ cdThumbAnimate.pause()
 cdThumbInfoAnimate.pause()
 const app = {
     // todo     1. Render Songs                         done
-    // todo     3. Play / Pause / Sweek
+    // todo     3. Play / Pause / Sweek                 done
     // todo     4. CD Rotate                            done
     // todo     5. Next / Prev                          done
     // todo     6. Random
@@ -458,6 +458,18 @@ const app = {
             _this.isPlaying = false
             cdThumbAnimate.pause()
             cdThumbInfoAnimate.pause()
+        }
+
+        audio.ontimeupdate = function () {
+            const progressPercent = (audio.currentTime / audio.duration) * 100
+            if (audio.duration) {
+                progress.value = progressPercent
+            }
+        }
+
+        progress.oninput = () => {
+            const sweek = (audio.duration / 100) * progress.value
+            audio.currentTime = sweek
         }
 
         nextButton.onclick = function () {
