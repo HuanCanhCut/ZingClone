@@ -479,8 +479,8 @@ const app = {
                 _this.randomSong()
             }
             _this.nextSong()
-            audio.play()
             _this.songActiveIntoView()
+            audio.play()
         }
 
         prevButton.onclick = function () {
@@ -488,6 +488,7 @@ const app = {
                 _this.randomSong()
             }
             _this.prevSong()
+            _this.songActiveIntoView()
             audio.play()
         }
 
