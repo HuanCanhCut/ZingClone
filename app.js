@@ -30,10 +30,16 @@ const cdThumbAnimate = cdThumb.animate([{ transform: 'rotate(360deg)' }], {
     iterations: Infinity,
 })
 
+const cdThumbInfoAnimate = musicControlCurrentImage.animate([{ transform: 'rotate(360deg)' }], {
+    duration: 12000,
+    iterations: Infinity,
+})
+cdThumbAnimate.pause()
+cdThumbInfoAnimate.pause()
 const app = {
     // todo     1. Render Songs                         done
     // todo     3. Play / Pause / Sweek
-    // todo     4. CD Rotate
+    // todo     4. CD Rotate                            done
     // todo     5. Next / Prev                          done
     // todo     6. Random
     // todo     7. Next or Repeat when ended
@@ -70,6 +76,7 @@ const app = {
             duration: '05:06',
             img: 'https://i.ytimg.com/vi/orFNbppc6_0/maxresdefault.jpg',
         },
+
         {
             img: './img/songs/0.webp',
             title: 'Anh Đã Lạc Vào',
@@ -442,11 +449,15 @@ const app = {
         audio.onplay = function () {
             togglePlayBtn.classList.add('playing')
             _this.isPlaying = true
+            cdThumbAnimate.play()
+            cdThumbInfoAnimate.play()
         }
 
         audio.onpause = function () {
             togglePlayBtn.classList.remove('playing')
             _this.isPlaying = false
+            cdThumbAnimate.pause()
+            cdThumbInfoAnimate.pause()
         }
 
         nextButton.onclick = function () {
@@ -525,6 +536,9 @@ const app = {
                                 if (audio.play()) {
                                     _this.isPlaying = false
                                 }
+
+                                cdThumbAnimate.cancel()
+                                cdThumbInfoAnimate.cancel()
                                 togglePlayBtn.classList.remove('playing')
                                 const selectedSong = Array.from(filterSearch).find((songSelect) => {
                                     return songSelect.id === Number(songItem.dataset.index)
