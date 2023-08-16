@@ -473,13 +473,25 @@ const app = {
         }
 
         nextButton.onclick = function () {
+            if (_this.isRandom) {
+                _this.randomSong()
+            }
             _this.nextSong()
             audio.play()
         }
 
         prevButton.onclick = function () {
+            if (_this.isRandom) {
+                _this.randomSong()
+            }
             _this.prevSong()
             audio.play()
+        }
+
+        randomButton.onclick = function () {
+            _this.isRandom = !_this.isRandom
+
+            randomButton.classList.toggle('active', _this.isRandom)
         }
     },
 
@@ -498,6 +510,21 @@ const app = {
             this.currentIndex = this.songs.length - 1
         }
 
+        this.loadCurrentSong()
+    },
+
+    playerIndexes: [],
+
+    randomSong: function () {
+        let newIndex
+
+        do {
+            newIndex = Math.floor(Math.random() * this.songs.length)
+        } while (this.playerIndexes.includes(newIndex))
+
+        this.playerIndexes.push(newIndex)
+
+        this.currentIndex = newIndex
         this.loadCurrentSong()
     },
 
