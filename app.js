@@ -38,16 +38,6 @@ const cdThumbInfoAnimate = musicControlCurrentImage.animate([{ transform: 'rotat
 cdThumbAnimate.pause()
 cdThumbInfoAnimate.pause()
 const app = {
-    // todo     1. Render Songs                         done
-    // todo     3. Play / Pause / Sweek                 done
-    // todo     4. CD Rotate                            done
-    // todo     5. Next / Prev                          done
-    // todo     6. Random                               done
-    // todo     7. Next or Repeat when ended            done
-    // todo     8. Active Song                          done
-    // todo     9. Scroll active song into view         done
-    // todo     10. Play song when to click             done
-
     songs: [
         {
             title: 'CÓ CHƠI CÓ CHỊU',
@@ -448,11 +438,16 @@ const app = {
             _this.isPlaying ? audio.pause() : audio.play()
         }
 
+        togglePlayThumb.onclick = function () {
+            _this.isPlaying ? audio.pause() : audio.play()
+        }
+
         audio.onplay = function () {
             togglePlayBtn.classList.add('playing')
             _this.isPlaying = true
             cdThumbAnimate.play()
             cdThumbInfoAnimate.play()
+            togglePlayThumb.innerText = 'Pause'
         }
 
         audio.onpause = function () {
@@ -460,6 +455,7 @@ const app = {
             _this.isPlaying = false
             cdThumbAnimate.pause()
             cdThumbInfoAnimate.pause()
+            togglePlayThumb.innerText = 'Play'
         }
 
         audio.ontimeupdate = function () {
@@ -552,8 +548,6 @@ const app = {
                 audio.play()
             }
         }
-
-        _this.songActiveIntoView()
     },
 
     nextSong: function () {
@@ -654,6 +648,9 @@ const app = {
                                 if (audio.play()) {
                                     _this.isPlaying = false
                                 }
+
+                                player.classList.remove('hide')
+                                musicControl.classList.remove('hide')
 
                                 cdThumbAnimate.cancel()
                                 cdThumbInfoAnimate.cancel()
