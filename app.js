@@ -24,6 +24,16 @@ const repeatButton = document.querySelector('.btn-repeat')
 const headerOptionsItems = [...document.querySelectorAll('.header-options-item')]
 const playListSuggests = document.querySelector('.player-list-suggest')
 
+// page-item
+
+const personalPage = document.querySelector('.page-item.personal')
+const discoverPage = document.querySelector('.page-item.discover')
+const zingchartPage = document.querySelector('.page-item.zingchart')
+const radioPage = document.querySelector('.page-item.radio')
+
+const personalListOptions = [...document.querySelectorAll('.personal-option')]
+const sidebarPageItems = [...document.querySelectorAll('.sidebar-main-item-page')]
+
 // animate cdthum rotate
 
 const cdThumbAnimate = cdThumb.animate([{ transform: 'rotate(360deg)' }], {
@@ -550,6 +560,38 @@ const app = {
         }
     },
 
+    personalHandle: function () {
+        const _this = this
+        personalListOptions.forEach((personalListOption) => {
+            personalListOption.onclick = function () {
+                document.querySelector('.personal-option.active').classList.remove('active')
+
+                personalListOption.classList.add('active')
+            }
+        })
+    },
+
+    pageHandle: function () {
+        sidebarPageItems.forEach((sidebarPageItem) => {
+            sidebarPageItem.onclick = function (e) {
+                const pageId = sidebarPageItem.getAttribute('id')
+
+                if (e.target.closest(`#${pageId}:not(.active)`)) {
+                    if (pageId === 'follow') {
+                        alert('Page này chưa có ^^')
+                    } else {
+                        document.querySelector(`.page-item.active`).classList.remove('active')
+                        document.querySelector(`.page-item.${pageId}`).classList.add('active')
+                    }
+                }
+
+                document.querySelector('.sidebar-main-item-page.active').classList.remove('active')
+                player.classList.add('hide')
+                sidebarPageItem.classList.add('active')
+            }
+        })
+    },
+
     nextSong: function () {
         this.currentIndex++
         if (this.currentIndex >= this.songs.length) {
@@ -650,6 +692,10 @@ const app = {
                                 }
 
                                 player.classList.remove('hide')
+                                if (!player.classList.contains('hide')) {
+                                    document.querySelector('.page-item.active').classList.remove('active')
+                                }
+
                                 musicControl.classList.remove('hide')
 
                                 cdThumbAnimate.cancel()
@@ -819,6 +865,13 @@ const app = {
 
         // handle event in DOM
         this.handleEvent()
+
+        // handle when to click personal option
+        this.personalHandle()
+
+        // handle when chose page
+
+        this.pageHandle()
 
         // handle when search
         this.handleSearch()

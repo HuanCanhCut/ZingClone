@@ -21,24 +21,24 @@
                 </div>
                 <div class="sidebar-container">
                     <div class="sidebar__main">
-                        <div class="sidebar__main-item active">
+                        <div id="personal" class="sidebar__main-item sidebar-main-item-page active">
                             <span><ion-icon name="play-outline"></ion-icon></span>
                             <span> Cá Nhân</span>
                         </div>
-                        <div class="sidebar__main-item">
+                        <div id="discover" class="sidebar__main-item sidebar-main-item-page">
                             <span><ion-icon name="disc-outline"></ion-icon></span>
-                            <span>#zingchart</span>
+                            <span>Khám Phá</span>
                         </div>
-                        <div class="sidebar__main-item">
+                        <div id="zingchart" class="sidebar__main-item sidebar-main-item-page">
                             <span><ion-icon name="stats-chart-outline"></ion-icon></span>
                             <span>#zingchart</span>
                         </div>
-                        <div class="sidebar__main-item">
+                        <div id="radio" class="sidebar__main-item sidebar-main-item-page">
                             <span> <ion-icon name="radio-outline"></ion-icon> </span>
                             <span>Radio</span>
                             <span class="live">LIVE</span>
                         </div>
-                        <div class="sidebar__main-item">
+                        <div id="follow" class="sidebar__main-item sidebar-main-item-page">
                             <span> <i class="far fa-list-alt"></i></span>
                             <span>Theo Dõi</span>
                         </div>
@@ -157,6 +157,25 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="page-item personal active">
+                        <div class="personal-header">
+                            <div class="personal-avata">
+                                <img src="./img/admin.jpg" alt="" />
+                            </div>
+                            <p class="admin-name">Huan Penguin</p>
+                            <div class="personal-header-options">
+                                <li class="personal-option active">TỔNG QUAN</li>
+                                <li class="personal-option">BÀI HÁT</li>
+                                <li class="personal-option">PLAYLIST</li>
+                                <li class="personal-option">NGHỆ SĨ</li>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-item discover">discover</div>
+                    <div class="page-item zingchart">zingchart</div>
+                    <div class="page-item radio">radio</div>
+                    <div class="page-item follow">radio</div>
 
                     <audio src="" id="audio"></audio>
                 </div>
