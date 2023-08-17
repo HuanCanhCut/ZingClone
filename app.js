@@ -68,7 +68,7 @@ const app = {
             title: 'Cơn Mưa Băng Giá',
             singer: 'Noo Phước Thịnh',
             pathSong: './songs/list-song/cmbg.mp3',
-            duration: '04:41',
+            duration: '04:40',
             img: 'https://tse1.mm.bing.net/th?id=OIP.hSgGC0yJ6GeY8IE1GDTW6gHaFi&pid=Api&P=0',
         },
         {
@@ -91,20 +91,20 @@ const app = {
             title: 'Chạy Về Khóc Với Anh',
             singer: 'Erik, Duzme Remix',
             pathSong: './songs/list-song/1.mp3',
-            duration: '04:05',
+            duration: '03:26',
         },
         {
             img: './img/songs/2.jpeg',
             title: 'Sẵn Sàng Yêu Em Đi Thôi',
             singer: 'Woni, Minh Tú, Đại Mèo Remix',
             pathSong: './songs/list-song/2.mp3',
-            duration: '03:51',
+            duration: '05:29',
         },
         {
             title: 'Ngôi Sao Cô Đơn',
             singer: 'Jack - J97',
             pathSong: './songs/list-song/nscd.mp3',
-            duration: '04:44',
+            duration: '04:43',
             img: 'https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/0/8/b/4/08b457f078f021dcbbb8eb76e8d23e43.jpg',
         },
         {
@@ -119,7 +119,7 @@ const app = {
             title: 'Gieo Quẻ',
             singer: 'Hoàng Thuỳ Linh, ĐEN, Orinn Remix',
             pathSong: './songs/list-song/3.mp3',
-            duration: '04:27',
+            duration: '04:00',
         },
 
         {
@@ -127,7 +127,7 @@ const app = {
             title: 'Lưu Số Em Đi',
             singer: 'Huỳnh Văn, V.P. Tiên, Đại Mèo Remix',
             pathSong: './songs/list-song/5.m4a',
-            duration: '04:10',
+            duration: '05:42',
         },
         {
             img: './img/songs/6.webp',
@@ -466,7 +466,28 @@ const app = {
             const progressPercent = (audio.currentTime / audio.duration) * 100
             if (audio.duration) {
                 progress.value = progressPercent
+                function getSongDuration(song) {
+                    let minutes = Math.floor(song.duration / 60)
+                    let seconds = Math.floor(song.duration - minutes * 60)
+                    if (seconds < 10) {
+                        return minutes + ':0' + seconds
+                    }
+                    return minutes + ':' + seconds
+                }
+                document.querySelector('.duration-song').innerText = getSongDuration(audio)
             }
+
+            function getCurrentTime(song) {
+                let minutes = Math.floor(song.currentTime / 60)
+                let seconds = Math.floor(song.currentTime - minutes * 60)
+
+                if (seconds < 10) {
+                    return minutes + ':0' + seconds
+                }
+
+                return minutes + ':' + seconds
+            }
+            document.querySelector('.current-time').innerText = getCurrentTime(audio)
         }
 
         progress.oninput = () => {
@@ -499,7 +520,6 @@ const app = {
                 repeatButton.classList.remove('active')
             }
 
-            console.log('isRandom', _this.isRandom)
             randomButton.classList.toggle('active', _this.isRandom)
         }
 
@@ -509,7 +529,6 @@ const app = {
                 _this.isRandom = false
                 randomButton.classList.remove('active')
             }
-            console.log('isRepeat', _this.isRepeat)
 
             repeatButton.classList.toggle('active', _this.isRepeat)
         }
@@ -570,7 +589,7 @@ const app = {
                     block: 'nearest',
                 })
             }
-        }, 300)
+        }, 200)
     },
 
     playerIndexes: [],

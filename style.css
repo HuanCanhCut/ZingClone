@@ -771,7 +771,7 @@ body::-webkit-scrollbar {
     height: 4px;
 }
 
-.music-control-center-sweek p {
+.music-control-center-sweek span {
     font-size: 14px;
 }
 
