@@ -6,6 +6,7 @@ const themes = document.querySelector('.themes')
 const playerThumb = document.querySelector('.player-thumb')
 const cdThumb = document.querySelector('.cd-thumb')
 const cdThumbs = [...document.querySelectorAll('.cd-thumb')]
+const musicControl = document.querySelector('.music-control')
 const musicControlCurrentImage = document.querySelector('.music-control-info-image')
 const togglePlayBtn = document.querySelector('.btn-toggle-play')
 const togglePlayThumb = document.querySelector('.player-thumb-toggle-play')
@@ -15,7 +16,6 @@ const currentPlayingImage = document.querySelector('.current-playing-body-image'
 const musicInfoSingers = [...document.querySelectorAll('.music-info-singer')]
 const listSongs = document.querySelector('.list-song-render')
 const currentSongDuration = document.querySelector('.current-song-duration')
-const musicControl = document.querySelector('.music-control')
 const progress = document.querySelector('.progress')
 const nextButton = document.querySelector('.btn-next')
 const prevButton = document.querySelector('.btn-prev')
@@ -30,8 +30,14 @@ const personalPage = document.querySelector('.page-item.personal')
 const discoverPage = document.querySelector('.page-item.discover')
 const zingchartPage = document.querySelector('.page-item.zingchart')
 const radioPage = document.querySelector('.page-item.radio')
+const sliderContainer = document.querySelector('.personal-content-center-slider')
+const sliders = document.querySelector('.sliders')
 
+// personal
+
+const personalPlayList = document.querySelector('.personal-content-center-playlist')
 const personalListOptions = [...document.querySelectorAll('.personal-option')]
+const personalContentItems = [...document.querySelectorAll('.personal-content-item')]
 const sidebarPageItems = [...document.querySelectorAll('.sidebar-main-item-page')]
 
 // animate cdthum rotate
@@ -54,7 +60,7 @@ const app = {
             singer: 'KARIK x ONLY C',
             pathSong: './songs/list-song/cochoicochiu.mp3',
             duration: '04:46',
-            img: 'https://vtv1.mediacdn.vn/thumb_w/640/2022/9/21/poster-karik-only-c-16637279213761078057270.jpeg',
+            img: 'https://i.ytimg.com/vi/dV-znS6RPbQ/maxresdefault.jpg',
         },
         {
             img: 'https://baochauelec.com/cdn/images/tin-tuc/loi-bat-hat-waiting-for-you-ban-chuan.jpg',
@@ -223,7 +229,7 @@ const app = {
             pathSong: './songs/list-song/lhdsl.mp3',
             duration: '05:43',
             type: 'vip',
-            img: 'https://i.ytimg.com/vi/HELjXqg9Ht0/sddefault.jpg',
+            img: 'https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/4/2/a/5/42a564469b6a80f9d288866ba8751b2e.jpg',
         },
 
         {
@@ -321,7 +327,7 @@ const app = {
         },
         // ------------- us -------------------
         {
-            img: 'https://m.media-amazon.com/images/M/MV5BMjE5MzcyNjk1M15BMl5BanBnXkFtZTcwMjQ4MjcxOQ@@._V1_.jpg',
+            img: 'https://i.ytimg.com/vi/shLUsd7kQCI/maxresdefault.jpg',
             title: 'Unstoppable',
             singer: 'Sia',
             time: '6 ngày trước',
@@ -339,7 +345,7 @@ const app = {
             duration: '4:22',
         },
         {
-            img: './img/playListSongs/ll.jpg',
+            img: 'https://i.ytimg.com/vi/28yhlw1qH9Y/sddefault.jpg',
             title: 'The Box',
             singer: 'Roddy Ricch',
             time: '6 ngày trước',
@@ -434,6 +440,8 @@ const app = {
         currentSongDuration.innerText = this.currentSong.duration
 
         listSongs.innerHTML = this.render().join('')
+
+        personalPlayList.innerHTML = this.render().join('')
     },
 
     handleEvent: function () {
@@ -455,6 +463,7 @@ const app = {
         audio.onplay = function () {
             togglePlayBtn.classList.add('playing')
             _this.isPlaying = true
+            musicControl.classList.remove('hide')
             cdThumbAnimate.play()
             cdThumbInfoAnimate.play()
             togglePlayThumb.innerText = 'Pause'
@@ -558,17 +567,71 @@ const app = {
                 audio.play()
             }
         }
+
+        personalPlayList.onclick = function (e) {
+            const targetSuggest = e.target.closest('.current-playing-body:not(.active)')
+            if (targetSuggest) {
+                _this.currentIndex = Number(targetSuggest.getAttribute('data-index'))
+                _this.loadCurrentSong()
+                audio.play()
+            }
+        }
     },
 
     personalHandle: function () {
         const _this = this
+        // xử lí khi chọn các page trong personal
         personalListOptions.forEach((personalListOption) => {
-            personalListOption.onclick = function () {
+            personalListOption.onclick = function (e) {
+                const personalListId = personalListOption.getAttribute('id')
+
+                if (e.target.closest(`#${personalListId}:not(.active)`)) {
+                    const personalItemActives = [...document.querySelectorAll('.personal-content-item.active')]
+
+                    personalItemActives.forEach((personalItemActive) => {
+                        personalItemActive.classList.remove('active')
+                        if (e.target.getAttribute('id').includes('overview')) {
+                            personalContentItems.forEach((personalContentItem) => {
+                                personalContentItem.classList.add('active')
+                            })
+                        } else if (e.target.getAttribute('id').includes('playlist')) {
+                            personalContentItems.forEach((personalContentItem) => {
+                                personalContentItem.classList.remove('active')
+                            })
+                            document.querySelector(`.personal-content-item.${personalListId}`).classList.add('active')
+                            document.querySelector(`.personal-content-item.mv`).classList.add('active')
+                        } else {
+                            document.querySelector(`.personal-content-item.${personalListId}`).classList.add('active')
+                        }
+                    })
+                }
                 document.querySelector('.personal-option.active').classList.remove('active')
 
                 personalListOption.classList.add('active')
             }
         })
+
+        // slider handle
+        const sliderItem = this.songs.map((song) => {
+            return `<img class="slider-item" src="${song.img}" alt=""></img>`
+        })
+
+        document.querySelector('.personal-content-music-btn-playall').onclick = function () {
+            audio.play()
+        }
+
+        sliders.innerHTML = sliderItem.join('')
+        const sliderItems = [...document.querySelectorAll('.slider-item')]
+        let index = 0
+        setInterval(() => {
+            if (index < sliderItems.length - 1) {
+                index++
+            } else {
+                index = 0
+            }
+
+            sliders.style.transform = `translateX(-${250 * index}px)`
+        }, 1500)
     },
 
     pageHandle: function () {
@@ -580,7 +643,9 @@ const app = {
                     if (pageId === 'follow') {
                         alert('Page này chưa có ^^')
                     } else {
-                        document.querySelector(`.page-item.active`).classList.remove('active')
+                        if (document.querySelector(`.page-item.active`)) {
+                            document.querySelector(`.page-item.active`).classList.remove('active')
+                        }
                         document.querySelector(`.page-item.${pageId}`).classList.add('active')
                     }
                 }
@@ -733,40 +798,48 @@ const app = {
     // THEMES
 
     dynamicThemes: [
-        {
-            name: 'Lan Anh 2',
-            img: './img/background.jpg',
-            modalTheme: './img/background.jpg',
-            backgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
-        },
-        {
-            name: 'Lan Anh ',
-            img: './background/backroundThemes/9.jpg',
-            modalTheme: './background/backroundThemes/9.jpg',
-            backgroundModal: './background/modalThemes/modalTheme3/theme8.jpg',
-        },
-        {
-            name: 'Default theme',
-            img: './background/backroundThemes/11.jpg',
-            modalTheme: './background/backroundThemes/11.jpg',
-            backgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
-        },
-        {
-            name: 'Lan Anh 3',
-            img: './background/backroundThemes/10.jpg',
-            modalTheme: './background/backroundThemes/10.jpg',
-            backgroundModal: './background/modalThemes/modalTheme3/theme8.jpg',
-        },
+        // {
+        //     name: 'Default theme',
+        //     img: './background/backroundThemes/11.jpg',
+        //     modalTheme: './background/backroundThemes/11.jpg',
+        //     backgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
+        // },
+        // {
+        //     name: 'Lan Anh ',
+        //     img: './background/backroundThemes/9.jpg',
+        //     modalTheme: './background/backroundThemes/9.jpg',
+        //     backgroundModal: './background/modalThemes/modalTheme3/theme8.jpg',
+        // },
+        // {
+        //     name: 'Lan Anh 2',
+        //     img: './img/background.jpg',
+        //     modalTheme: './img/background.jpg',
+        //     backgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
+        // },
+
+        // {
+        //     name: 'Lan Anh 3',
+        //     img: './background/backroundThemes/10.jpg',
+        //     modalTheme: './background/backroundThemes/10.jpg',
+        //     backgroundModal: './background/modalThemes/modalTheme3/theme8.jpg',
+        // },
         {
             name: 'Tháp Eiffel',
             img: './background/backroundThemes/1.jpg',
             modalTheme: './background/modalThemes/modalTheme1/theme2.jpg',
             backgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
         },
+        {
+            name: 'Rosé',
+            img: './background/backroundThemes/2.jpg',
+            modalTheme: './background/modalThemes/modalTheme2/theme1.jpg',
+            backgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
+        },
     ],
 
     handleThemes: function () {
         const _this = this
+
         appElement.addEventListener('click', (e) => {
             // xu li khi click vao themes options
             const targetThemesButton = e.target.closest('.header-options-theme')
@@ -838,6 +911,11 @@ const app = {
                     })
 
                     Object.assign(musicControl.style, {
+                        background: `url('${_this.defaultBackgroundModal}')`,
+                        backgroundSize: 'cover',
+                    })
+
+                    Object.assign(document.querySelector('.personal-content-music-btn-upload').style, {
                         background: `url('${_this.defaultBackgroundModal}')`,
                         backgroundSize: 'cover',
                     })

@@ -52,7 +52,7 @@ body::-webkit-scrollbar {
 .background {
     width: 100%;
     height: 100vh;
-    background: url('./background/backroundThemes/11.jpg');
+    background: url('./background/backroundThemes/1.jpg');
     background-size: cover;
     transition: all linear 0.5s;
 }
@@ -607,6 +607,10 @@ body::-webkit-scrollbar {
     transition: all linear 0.1s;
 }
 
+.current-playing-body:active {
+    opacity: 0.8;
+}
+
 .current-playing-body-singer {
     color: var(--color-small);
     font-size: 12px;
@@ -847,6 +851,7 @@ body::-webkit-scrollbar {
     border-radius: 50%;
     overflow: hidden;
     background-position: center center;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
 }
 
 .personal-avata img {
@@ -875,6 +880,7 @@ body::-webkit-scrollbar {
     display: flex;
     border-radius: 20px;
     background-color: rgba(225, 255, 255, 0.02);
+    padding: 3px;
 }
 
 .personal-header-options li {
@@ -888,4 +894,88 @@ body::-webkit-scrollbar {
 
 .personal-header-options li.active {
     background-color: var(--background-music1);
+}
+
+.personal-content {
+    width: 100%;
+    padding: 16px 40px 80px 40px;
+}
+
+.personal-content-item {
+    display: none;
+    padding: 8px 16px;
+}
+
+.personal-content-item.active {
+    display: block;
+}
+
+.personal-content-music-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.personal-content-music-btn button {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    margin: 0 12px;
+    color: #fff;
+}
+
+.personal-content-music-btn button:active {
+    opacity: 0.8;
+}
+
+.personal-content-music-btn-upload {
+    background: url('./background/modalThemes/modalTheme3/theme1.jpg');
+}
+
+.personal-content-music-btn-playall {
+    background: url('./background/modalThemes/modalTheme3/theme0.jpg');
+}
+
+.personal-content-music-btn i {
+    margin-right: 12px;
+}
+
+.personal-content-center {
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.personal-content-center-slider {
+    width: 250px;
+    height: 250px;
+    border: 2px solid #fff;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.sliders {
+    display: flex;
+    transition: all 0.4s linear;
+}
+
+.sliders img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.personal-content-center-playlist {
+    height: 60%;
+    max-height: 60vh;
+    flex: 1;
+    padding: 8px 40px;
+    overflow: scroll;
+}
+
+.test {
+    width: 100%;
+    height: 100%;
 }
