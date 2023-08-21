@@ -39,6 +39,7 @@ const personalPlayList = document.querySelector('.personal-content-center-playli
 const personalListOptions = [...document.querySelectorAll('.personal-option')]
 const personalContentItems = [...document.querySelectorAll('.personal-content-item')]
 const sidebarPageItems = [...document.querySelectorAll('.sidebar-main-item-page')]
+const playlistItems = [...document.querySelectorAll('.playlist-container-item:not(.playlist-container-item-create)')]
 
 // animate cdthum rotate
 
@@ -53,7 +54,18 @@ const cdThumbInfoAnimate = musicControlCurrentImage.animate([{ transform: 'rotat
 })
 cdThumbAnimate.pause()
 cdThumbInfoAnimate.pause()
+
+const trendingAPI = ' https://api-kaito-music.vercel.app/api/music/trending?_limit=20&_page=1'
+
 const app = {
+    // defined default properties
+    currentIndex: 0,
+    defaultBackground: './background/backgroundThemes/11.jpg',
+    defaultBackgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
+    isPlaying: false,
+    isRandom: false,
+    isRepeat: false,
+
     songs: [
         {
             title: 'CÓ CHƠI CÓ CHỊU',
@@ -61,6 +73,14 @@ const app = {
             pathSong: './songs/list-song/cochoicochiu.mp3',
             duration: '04:46',
             img: 'https://i.ytimg.com/vi/dV-znS6RPbQ/maxresdefault.jpg',
+        },
+
+        {
+            title: 'Chúng ta sau này',
+            singer: 'T.R.I',
+            pathSong: './songs/list-song/chungtasaunay.mp3',
+            duration: '03:31',
+            img: 'https://avatar-ex-swe.nixcdn.com/song/share/2021/01/27/f/1/e/c/1611738359456.jpg',
         },
         {
             img: 'https://baochauelec.com/cdn/images/tin-tuc/loi-bat-hat-waiting-for-you-ban-chuan.jpg',
@@ -383,16 +403,6 @@ const app = {
         },
     ],
 
-    //
-
-    // defined default properties
-    currentIndex: 0,
-    defaultBackground: './background/backgroundThemes/11.jpg',
-    defaultBackgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
-    isPlaying: false,
-    isRandom: false,
-    isRepeat: false,
-
     render: function () {
         const htmls = this.songs.map((song, index) => {
             song['id'] = index
@@ -431,6 +441,12 @@ const app = {
         musicInfoSingers.forEach((musicInfoSinger) => {
             musicInfoSinger.innerText = this.currentSong.singer
         })
+
+        Object.assign(currentPlayingImage.style, {
+            background: `url('${this.currentSong.img}')`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+        })
         currentPlayingImage.style.background = `url('${this.currentSong.img}')`
         currentPlayingImage.style.backgroundSize = 'cover'
         cdThumbs.forEach((cdThumb) => {
@@ -466,7 +482,7 @@ const app = {
             musicControl.classList.remove('hide')
             cdThumbAnimate.play()
             cdThumbInfoAnimate.play()
-            togglePlayThumb.innerText = 'Pause'
+            togglePlayThumb.innerText = 'Tạm Dừng'
         }
 
         audio.onpause = function () {
@@ -474,7 +490,7 @@ const app = {
             _this.isPlaying = false
             cdThumbAnimate.pause()
             cdThumbInfoAnimate.pause()
-            togglePlayThumb.innerText = 'Play'
+            togglePlayThumb.innerText = 'Tiếp Tục Phát'
         }
 
         audio.ontimeupdate = function () {
@@ -569,7 +585,7 @@ const app = {
         }
 
         personalPlayList.onclick = function (e) {
-            const targetSuggest = e.target.closest('.current-playing-body:not(.active)')
+            const targetSuggest = e.target.closest('.current-playing-body')
             if (targetSuggest) {
                 _this.currentIndex = Number(targetSuggest.getAttribute('data-index'))
                 _this.loadCurrentSong()
@@ -577,6 +593,8 @@ const app = {
             }
         }
     },
+
+    playList: [],
 
     personalHandle: function () {
         const _this = this
@@ -631,7 +649,25 @@ const app = {
             }
 
             sliders.style.transform = `translateX(-${250 * index}px)`
-        }, 1500)
+        }, 2000)
+
+        // playlist handle
+
+        playlistItems.forEach((playlistItem) => {
+            playlistItem.onclick = function (e) {
+                if (e.target.closest('.playlist-container-item')) {
+                    // hide page acitve and show player
+                    player.classList.remove('hide')
+                    if (!player.classList.contains('hide')) {
+                        document.querySelector('.page-item.active').classList.remove('active')
+                    }
+
+                    musicControl.classList.remove('hide')
+                }
+            }
+        })
+
+        // playlist handle
     },
 
     pageHandle: function () {
