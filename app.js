@@ -608,11 +608,15 @@ const app = {
 
                     personalItemActives.forEach((personalItemActive) => {
                         personalItemActive.classList.remove('active')
+                        // khi chon tat ca
                         if (e.target.getAttribute('id').includes('overview')) {
                             personalContentItems.forEach((personalContentItem) => {
                                 personalContentItem.classList.add('active')
                             })
-                        } else if (e.target.getAttribute('id').includes('playlist')) {
+                        }
+
+                        // khi chon playlist
+                        else if (e.target.getAttribute('id').includes('playlist')) {
                             personalContentItems.forEach((personalContentItem) => {
                                 personalContentItem.classList.remove('active')
                             })
@@ -667,7 +671,31 @@ const app = {
             }
         })
 
-        // playlist handle
+        // artist handle
+
+        const singerItem = this.listSinger.map((singer) => {
+            return `
+                <div class="artist-item">
+                    <div class="artist-item-image">
+                        <img src="${singer.img}" alt="" />
+                        <div class="artist-item-options">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="artist-item-content">
+                        <div class="artist-item-info">
+                            <h4>${singer.Singer}</h4>
+                            <p>${singer.Folower}</p>
+                        </div>
+                        <button>
+                            <span><i class="fa-solid fa-shuffle"></i> </span>Góc Nhạc
+                        </button>
+                    </div>
+                </div>
+            `
+        })
+
+        document.querySelector('.artist-container').innerHTML = singerItem.join('')
     },
 
     pageHandle: function () {
@@ -675,7 +703,7 @@ const app = {
             sidebarPageItem.onclick = function (e) {
                 const pageId = sidebarPageItem.getAttribute('id')
 
-                if (e.target.closest(`#${pageId}:not(.active)`)) {
+                if (e.target.closest(`#${pageId}`)) {
                     if (pageId === 'follow') {
                         alert('Page này chưa có ^^')
                     } else {
