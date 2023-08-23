@@ -101,6 +101,30 @@ body::-webkit-scrollbar {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.sidebar-main-item-vip {
+    width: 86%;
+    margin-left: 7%;
+    margin-top: 30px;
+    padding: 20px 8px;
+    text-align: center;
+    background-image: linear-gradient(117deg, #614de5, #b567d9);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.sidebar-main-item-vip .vip-update {
+    margin-top: 15px;
+    padding: 4px 16px;
+    cursor: pointer;
+    background-color: #ffdb00;
+    color: black;
+    border-radius: 20px;
+}
+
 .sidebar__main:nth-child(1) {
     margin-top: 100px;
 }
@@ -500,6 +524,8 @@ body::-webkit-scrollbar {
     width: 40px;
     height: 40px;
     background: url('./background/modalThemes/modalTheme3/theme1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 100%;
     cursor: pointer;
 }
@@ -1247,4 +1273,82 @@ body::-webkit-scrollbar {
 .artist-item-content button i {
     margin-right: 8px;
     font-size: 10px;
+}
+
+.discover-slider {
+    width: 100%;
+    padding: 32px;
+    position: relative;
+    display: flex;
+}
+
+.discover-slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(225, 225, 225, 0.1);
+    color: white;
+    opacity: 0;
+    transition: all 0.1s linear;
+}
+
+.discover-slider:hover button {
+    opacity: 1;
+}
+
+.discover-slider .discover-prev-slide {
+    left: 10px;
+}
+
+.discover-slider .discover-next-slide {
+    position: absolute;
+    right: 10px;
+}
+
+.discover-sliders {
+    width: 100%;
+    padding: 8px 0;
+    display: inline-flex;
+    align-items: center;
+    transition: all linear 0.6s;
+    position: relative;
+    aspect-ratio: 5/1;
+    overflow: hidden;
+}
+
+.discover-slider .discover-slide {
+    width: 30.7%;
+    position: absolute;
+    margin: 0 1.333%;
+    border-radius: 10px;
+    transition: all linear 0.6s;
+}
+
+.discover-slide-first {
+    left: 0;
+    transform: translateX(0);
+}
+
+.discover-slide-second {
+    left: 50%;
+    transform: translateX(-54.5%);
+}
+
+.discover-slide-third {
+    right: 0;
+    transform: translateX(0);
+}
+
+.discover-slide-four {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-54.5%);
+    opacity: 0;
 }

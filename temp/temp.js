@@ -2337,7 +2337,18 @@ const app = {
         this.handelPlayListSong()
     },
     // ================ Khám phá ====================
-    discover1: [{ img: './img/discover/ctn1/0.jpg' }, { img: './img/discover/ctn1/1.jpg' }, { img: './img/discover/ctn1/2.jpg' }, { img: './img/discover/ctn1/3.jpg' }, { img: './img/discover/ctn1/4.jpg' }, { img: './img/discover/ctn1/5.jpg' }, { img: './img/discover/ctn1/6.jpg' }, { img: './img/discover/ctn1/7.jpg' }, { img: './img/discover/ctn1/8.jpg' }],
+    discover1: [
+        //
+        { img: './img/discover/ctn1/0.jpg' },
+        { img: './img/discover/ctn1/1.jpg' },
+        { img: './img/discover/ctn1/2.jpg' },
+        { img: './img/discover/ctn1/3.jpg' },
+        { img: './img/discover/ctn1/4.jpg' },
+        { img: './img/discover/ctn1/5.jpg' },
+        { img: './img/discover/ctn1/6.jpg' },
+        { img: './img/discover/ctn1/7.jpg' },
+        { img: './img/discover/ctn1/8.jpg' },
+    ],
     discover2: [],
 
     discover3: [
