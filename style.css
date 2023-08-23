@@ -713,6 +713,7 @@ body::-webkit-scrollbar {
     transition: all linear 0.2s;
     display: flex;
     align-items: center;
+    z-index: 99999;
 }
 
 .music-control.hide {
@@ -975,30 +976,77 @@ body::-webkit-scrollbar {
 }
 
 .personal-content-center-slider {
-    width: 250px;
-    height: 250px;
-    border: 2px solid #fff;
+    width: 34%;
+    aspect-ratio: 1.5 /1;
     overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.5);
+    display: inline-flex;
+    position: relative;
+    border-radius: 10px;
 }
 
-.sliders {
-    display: flex;
-    transition: all 0.4s linear;
+.personal-slide {
+    background-size: cover;
+    /* border: 1px solid #fff; */
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    border-radius: 10px;
+    transition: all linear 0.7s;
+    aspect-ratio: 1 / 1;
+    /* box-shadow: 5px 10px 40px rgb(128, 128, 128, 0.4); */
 }
 
-.sliders img {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
+.personal-slide-first {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    opacity: 1;
+    top: 50%;
+    transform: translate(50%, -50%);
+    z-index: 5;
+}
+
+.personal-slide-second {
+    height: 80%;
+    aspect-ratio: 1 / 1;
+    top: 50%;
+    transform: translate(40%, -50%);
+    opacity: 0.8 !important;
+    z-index: 4;
+}
+
+.personal-slide-third {
+    height: 60%;
+    aspect-ratio: 1 / 1;
+    top: 50%;
+    transform: translate(30%, -50%);
+    opacity: 0.6 !important;
+    z-index: 3;
+}
+
+.personal-slide-four {
+    height: 44%;
+    opacity: 0.3 !important;
+    top: 50%;
+    aspect-ratio: 1 / 1;
+    z-index: 2;
+    transform: translate(20%, -50%);
+}
+
+.personal-slide-five {
+    opacity: 0 !important;
+    z-index: 1;
+    aspect-ratio: 1 / 1;
+    height: 44%;
+    top: 50%;
+    transform: translate(-20%, -50%);
 }
 
 .personal-content-center-playlist {
     height: 60%;
     max-height: 60vh;
     flex: 1;
-    padding: 8px 40px;
+    padding: 8px 0px 8px 50px;
     overflow: scroll;
 }
 

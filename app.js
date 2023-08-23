@@ -30,7 +30,7 @@ const personalPage = document.querySelector('.page-item.personal')
 const discoverPage = document.querySelector('.page-item.discover')
 const zingchartPage = document.querySelector('.page-item.zingchart')
 const radioPage = document.querySelector('.page-item.radio')
-const sliderContainer = document.querySelector('.personal-content-center-slider')
+const personalSliderContent = document.querySelector('.personal-content-center-slider')
 const sliders = document.querySelector('.sliders')
 
 // personal
@@ -78,7 +78,7 @@ const app = {
             singer: 'KARIK x ONLY C',
             pathSong: './songs/list-song/cochoicochiu.mp3',
             duration: '04:46',
-            img: 'https://i.ytimg.com/vi/dV-znS6RPbQ/maxresdefault.jpg',
+            img: 'https://newsmd2fr.keeng.net/tiin/archive/imageslead/2022/09/21/wx8ygsu0lfln100ur8vqajn45pa34ite.jpg',
         },
 
         {
@@ -180,7 +180,7 @@ const app = {
             singer: 'Jack - J97',
             pathSong: './songs/list-song/vba.mp3',
             duration: '04:21',
-            img: 'https://i.ytimg.com/vi/EjrIz5UX4Io/maxresdefault.jpg',
+            img: 'https://o.rada.vn/data/image/2022/05/16/Ve-ben-anh-700.jpg',
         },
         {
             img: './img/songs/7.webp',
@@ -641,21 +641,17 @@ const app = {
         })
 
         // slider handle
-        const sliderItem = this.songs.map((song) => {
-            return `<img class="slider-item" src="${song.img}" alt=""></img>`
+
+        const htmls = this.songs.map((song, index) => {
+            return `
+                <div class="personal-slide ${index == 0 ? 'personal-slide-first' : index == 1 ? 'personal-slide-second' : index == 2 ? 'personal-slide-third' : index == 3 ? 'personal-slide-four' : 'personal-slide-five'}" style="background-image: url('${song.img}');"></div>
+            `
         })
 
-        sliders.innerHTML = sliderItem.join('')
-        const sliderItems = [...document.querySelectorAll('.slider-item')]
-        let index = 0
-        setInterval(() => {
-            if (index < sliderItems.length - 1) {
-                index++
-            } else {
-                index = 0
-            }
+        personalSliderContent.innerHTML = htmls.join('')
 
-            sliders.style.transform = `translateX(-${250 * index}px)`
+        setInterval(() => {
+            this.personalHandleSlide()
         }, 2000)
 
         // khi click vào nút phát tất cả
@@ -704,6 +700,26 @@ const app = {
         })
 
         document.querySelector('.artist-container').innerHTML = singerItem.join('')
+    },
+
+    personalHandleSlide: function () {
+        const firsSlide = document.querySelector('.personal-slide-first')
+        const secondSlide = document.querySelector('.personal-slide-second')
+        const thirdSlide = document.querySelector('.personal-slide-third')
+        const fourSlide = document.querySelector('.personal-slide-four')
+        const fiveSlide = document.querySelectorAll('.personal-slide-five')
+
+        firsSlide.style.opacity = 0
+        firsSlide.classList.replace('personal-slide-first', 'personal-slide-five')
+
+        secondSlide.classList.replace('personal-slide-second', 'personal-slide-first')
+
+        thirdSlide.classList.replace('personal-slide-third', 'personal-slide-second')
+        fourSlide.classList.replace('personal-slide-four', 'personal-slide-third')
+
+        const randomIndex = Math.floor(Math.random() * fiveSlide.length)
+        fiveSlide[randomIndex].classList.replace('personal-slide-five', 'personal-slide-four')
+        fiveSlide[randomIndex].style.opacity = 1
     },
 
     //Khám phá
