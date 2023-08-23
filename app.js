@@ -63,357 +63,356 @@ cdThumbInfoAnimate.pause()
 
 const trendingAPI = ' https://api-kaito-music.vercel.app/api/music/trending?_limit=20&_page=1'
 
-async function main() {
-    const app = {
-        // defined default properties
-        currentIndex: 0,
-        defaultBackground: './background/backgroundThemes/11.jpg',
-        defaultBackgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
-        isPlaying: false,
-        isRandom: false,
-        isRepeat: false,
+const app = {
+    // defined default properties
+    currentIndex: 0,
+    defaultBackground: './background/backgroundThemes/11.jpg',
+    defaultBackgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
+    isPlaying: false,
+    isRandom: false,
+    isRepeat: false,
 
-        songs: [
-            {
-                title: 'CÓ CHƠI CÓ CHỊU',
-                singer: 'KARIK x ONLY C',
-                pathSong: './songs/list-song/cochoicochiu.mp3',
-                duration: '04:46',
-                img: 'https://i.ytimg.com/vi/dV-znS6RPbQ/maxresdefault.jpg',
-            },
+    songs: [
+        {
+            title: 'CÓ CHƠI CÓ CHỊU',
+            singer: 'KARIK x ONLY C',
+            pathSong: './songs/list-song/cochoicochiu.mp3',
+            duration: '04:46',
+            img: 'https://i.ytimg.com/vi/dV-znS6RPbQ/maxresdefault.jpg',
+        },
 
-            {
-                title: 'Chúng ta sau này',
-                singer: 'T.R.I',
-                pathSong: './songs/list-song/chungtasaunay.mp3',
-                duration: '03:31',
-                img: 'https://avatar-ex-swe.nixcdn.com/song/share/2021/01/27/f/1/e/c/1611738359456.jpg',
-            },
-            {
-                img: 'https://baochauelec.com/cdn/images/tin-tuc/loi-bat-hat-waiting-for-you-ban-chuan.jpg',
-                title: 'Waiting For You',
-                singer: 'MONO',
-                pathSong: './songs/vip/WaitingForYou.mp3',
-                duration: '04:25',
-            },
+        {
+            title: 'Chúng ta sau này',
+            singer: 'T.R.I',
+            pathSong: './songs/list-song/chungtasaunay.mp3',
+            duration: '03:31',
+            img: 'https://avatar-ex-swe.nixcdn.com/song/share/2021/01/27/f/1/e/c/1611738359456.jpg',
+        },
+        {
+            img: 'https://baochauelec.com/cdn/images/tin-tuc/loi-bat-hat-waiting-for-you-ban-chuan.jpg',
+            title: 'Waiting For You',
+            singer: 'MONO',
+            pathSong: './songs/vip/WaitingForYou.mp3',
+            duration: '04:25',
+        },
 
-            {
-                title: 'Cơn Mưa Băng Giá',
-                singer: 'Noo Phước Thịnh',
-                pathSong: './songs/list-song/cmbg.mp3',
-                duration: '04:40',
-                img: 'https://tse1.mm.bing.net/th?id=OIP.hSgGC0yJ6GeY8IE1GDTW6gHaFi&pid=Api&P=0',
-            },
-            {
-                title: 'Em Là Con Thuyền Cô Đơn',
-                singer: 'Thái Học',
-                pathSong: './songs/list-song/elctcd.mp3',
-                duration: '05:06',
-                img: 'https://i.ytimg.com/vi/orFNbppc6_0/maxresdefault.jpg',
-            },
+        {
+            title: 'Cơn Mưa Băng Giá',
+            singer: 'Noo Phước Thịnh',
+            pathSong: './songs/list-song/cmbg.mp3',
+            duration: '04:40',
+            img: 'https://tse1.mm.bing.net/th?id=OIP.hSgGC0yJ6GeY8IE1GDTW6gHaFi&pid=Api&P=0',
+        },
+        {
+            title: 'Em Là Con Thuyền Cô Đơn',
+            singer: 'Thái Học',
+            pathSong: './songs/list-song/elctcd.mp3',
+            duration: '05:06',
+            img: 'https://i.ytimg.com/vi/orFNbppc6_0/maxresdefault.jpg',
+        },
 
-            {
-                img: './img/songs/0.webp',
-                title: 'Anh Đã Lạc Vào',
-                singer: 'Green, Đại Mèo Remix',
-                pathSong: './songs/list-song/0.mp3',
-                duration: '04:27',
-            },
-            {
-                img: 'https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/c/6/d/e/c6def069a1a885c41fe479358fa7c506.jpg',
-                title: 'Chạy Về Khóc Với Anh',
-                singer: 'Erik, Duzme Remix',
-                pathSong: './songs/list-song/1.mp3',
-                duration: '03:26',
-            },
-            {
-                img: './img/songs/2.jpeg',
-                title: 'Sẵn Sàng Yêu Em Đi Thôi',
-                singer: 'Woni, Minh Tú, Đại Mèo Remix',
-                pathSong: './songs/list-song/2.mp3',
-                duration: '05:29',
-            },
-            {
-                title: 'Ngôi Sao Cô Đơn',
-                singer: 'Jack - J97',
-                pathSong: './songs/list-song/nscd.mp3',
-                duration: '04:43',
-                img: 'https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/0/8/b/4/08b457f078f021dcbbb8eb76e8d23e43.jpg',
-            },
-            {
-                title: 'Đom Đóm',
-                singer: 'Jack - J97',
-                pathSong: './songs/list-song/dd.mp3',
-                duration: '06:21',
-                img: ' https://i.ytimg.com/vi/4CCGI83vOVo/maxresdefault.jpg',
-            },
-            {
-                img: './img/songs/3.webp',
-                title: 'Gieo Quẻ',
-                singer: 'Hoàng Thuỳ Linh, ĐEN, Orinn Remix',
-                pathSong: './songs/list-song/3.mp3',
-                duration: '04:00',
-            },
+        {
+            img: './img/songs/0.webp',
+            title: 'Anh Đã Lạc Vào',
+            singer: 'Green, Đại Mèo Remix',
+            pathSong: './songs/list-song/0.mp3',
+            duration: '04:27',
+        },
+        {
+            img: 'https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/c/6/d/e/c6def069a1a885c41fe479358fa7c506.jpg',
+            title: 'Chạy Về Khóc Với Anh',
+            singer: 'Erik, Duzme Remix',
+            pathSong: './songs/list-song/1.mp3',
+            duration: '03:26',
+        },
+        {
+            img: './img/songs/2.jpeg',
+            title: 'Sẵn Sàng Yêu Em Đi Thôi',
+            singer: 'Woni, Minh Tú, Đại Mèo Remix',
+            pathSong: './songs/list-song/2.mp3',
+            duration: '05:29',
+        },
+        {
+            title: 'Ngôi Sao Cô Đơn',
+            singer: 'Jack - J97',
+            pathSong: './songs/list-song/nscd.mp3',
+            duration: '04:43',
+            img: 'https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/0/8/b/4/08b457f078f021dcbbb8eb76e8d23e43.jpg',
+        },
+        {
+            title: 'Đom Đóm',
+            singer: 'Jack - J97',
+            pathSong: './songs/list-song/dd.mp3',
+            duration: '06:21',
+            img: ' https://i.ytimg.com/vi/4CCGI83vOVo/maxresdefault.jpg',
+        },
+        {
+            img: './img/songs/3.webp',
+            title: 'Gieo Quẻ',
+            singer: 'Hoàng Thuỳ Linh, ĐEN, Orinn Remix',
+            pathSong: './songs/list-song/3.mp3',
+            duration: '04:00',
+        },
 
-            {
-                img: './img/songs/5.webp',
-                title: 'Lưu Số Em Đi',
-                singer: 'Huỳnh Văn, V.P. Tiên, Đại Mèo Remix',
-                pathSong: './songs/list-song/5.m4a',
-                duration: '05:42',
-            },
-            {
-                img: './img/songs/6.webp',
-                title: 'Như Một Người Dưng',
-                singer: 'Nguyễn Thạc Bảo Ngọc, Remix',
-                pathSong: './songs/list-song/6.mp3',
-                duration: '05:05',
-            },
-            {
-                title: 'Lặng Yên',
-                singer: 'Bùi Anh Tuấn ft. Ái Phương',
-                pathSong: './songs/list-song/langyen.mp3',
-                duration: '04:41',
-                img: 'https://icdn.dantri.com.vn/2021/05/29/2-mua-lua-chin-1622224483750.jpg',
-            },
-            {
-                title: 'Về Bên Anh',
-                singer: 'Jack - J97',
-                pathSong: './songs/list-song/vba.mp3',
-                duration: '04:21',
-                img: 'https://i.ytimg.com/vi/EjrIz5UX4Io/maxresdefault.jpg',
-            },
-            {
-                img: './img/songs/7.webp',
-                title: 'Ôm Nhiều Mộng Mơ',
-                singer: 'Phát Huy T4, Đại Mèo Remix',
-                pathSong: './songs/list-song/7.m4a',
-                duration: '03:16',
-            },
-            {
-                img: './img/songs/8.jpg',
-                title: 'Tình Yêu Ngủ Quên',
-                singer: 'Hoàng Tôn, LyHan, Orinn Remix',
-                pathSong: './songs/list-song/8.mp3',
-                duration: '04:27',
-            },
-            {
-                img: './img/songs/9.webp',
-                title: 'Không Bằng',
-                singer: 'Na, RIN songs Remix',
-                pathSong: './songs/list-song/9.m4a',
-                duration: '03:23',
-            },
-            {
-                img: './img/songs/10.webp',
-                title: 'Ai Chung Tình Được Mãi',
-                singer: 'Đinh Tùng Huy, ACV Remix',
-                pathSong: './songs/list-song/10.m4a',
-                duration: '03:55',
-            },
-            {
-                img: './img/songs/11.webp',
-                title: 'Cô Đơn Dành Cho Ai',
-                singer: 'NAL, LEE KEN, Orinn Remix',
-                pathSong: './songs/list-song/11.m4a',
-                duration: '04:45',
-            },
-            {
-                img: './img/songs/12.webp',
-                title: 'Ánh mắt ta chạm nhau',
-                singer: 'Ngô Lan Hương, Đại Mèo remix',
-                pathSong: './songs/list-song/12.m4a',
-                duration: '06:01',
-            },
-            {
-                img: './img/songs/13.webp',
-                title: '2 Phút Hơn',
-                singer: 'Phao, KAIZ Remix',
-                pathSong: './songs/list-song/13.m4a',
-                duration: '05:02',
-            },
-            {
-                img: './img/songs/14.webp',
-                title: 'Là Ai Từ Bỏ Là Ai Vô Tình',
-                singer: 'Hương Ly, Jombie (G5R), RIN songs Remix',
-                pathSong: './songs/list-song/14.m4a',
-                duration: '03:25',
-            },
-            {
-                img: './img/songs/2.jpeg',
-                title: 'Yêu Đừng Sợ Đau',
-                singer: 'Ngô Lan Hương, Cukak Remix',
-                pathSong: './songs/list-song/15.m4a',
-                duration: '03:51',
-                type: 'vip',
-            },
+        {
+            img: './img/songs/5.webp',
+            title: 'Lưu Số Em Đi',
+            singer: 'Huỳnh Văn, V.P. Tiên, Đại Mèo Remix',
+            pathSong: './songs/list-song/5.m4a',
+            duration: '05:42',
+        },
+        {
+            img: './img/songs/6.webp',
+            title: 'Như Một Người Dưng',
+            singer: 'Nguyễn Thạc Bảo Ngọc, Remix',
+            pathSong: './songs/list-song/6.mp3',
+            duration: '05:05',
+        },
+        {
+            title: 'Lặng Yên',
+            singer: 'Bùi Anh Tuấn ft. Ái Phương',
+            pathSong: './songs/list-song/langyen.mp3',
+            duration: '04:41',
+            img: 'https://icdn.dantri.com.vn/2021/05/29/2-mua-lua-chin-1622224483750.jpg',
+        },
+        {
+            title: 'Về Bên Anh',
+            singer: 'Jack - J97',
+            pathSong: './songs/list-song/vba.mp3',
+            duration: '04:21',
+            img: 'https://i.ytimg.com/vi/EjrIz5UX4Io/maxresdefault.jpg',
+        },
+        {
+            img: './img/songs/7.webp',
+            title: 'Ôm Nhiều Mộng Mơ',
+            singer: 'Phát Huy T4, Đại Mèo Remix',
+            pathSong: './songs/list-song/7.m4a',
+            duration: '03:16',
+        },
+        {
+            img: './img/songs/8.jpg',
+            title: 'Tình Yêu Ngủ Quên',
+            singer: 'Hoàng Tôn, LyHan, Orinn Remix',
+            pathSong: './songs/list-song/8.mp3',
+            duration: '04:27',
+        },
+        {
+            img: './img/songs/9.webp',
+            title: 'Không Bằng',
+            singer: 'Na, RIN songs Remix',
+            pathSong: './songs/list-song/9.m4a',
+            duration: '03:23',
+        },
+        {
+            img: './img/songs/10.webp',
+            title: 'Ai Chung Tình Được Mãi',
+            singer: 'Đinh Tùng Huy, ACV Remix',
+            pathSong: './songs/list-song/10.m4a',
+            duration: '03:55',
+        },
+        {
+            img: './img/songs/11.webp',
+            title: 'Cô Đơn Dành Cho Ai',
+            singer: 'NAL, LEE KEN, Orinn Remix',
+            pathSong: './songs/list-song/11.m4a',
+            duration: '04:45',
+        },
+        {
+            img: './img/songs/12.webp',
+            title: 'Ánh mắt ta chạm nhau',
+            singer: 'Ngô Lan Hương, Đại Mèo remix',
+            pathSong: './songs/list-song/12.m4a',
+            duration: '06:01',
+        },
+        {
+            img: './img/songs/13.webp',
+            title: '2 Phút Hơn',
+            singer: 'Phao, KAIZ Remix',
+            pathSong: './songs/list-song/13.m4a',
+            duration: '05:02',
+        },
+        {
+            img: './img/songs/14.webp',
+            title: 'Là Ai Từ Bỏ Là Ai Vô Tình',
+            singer: 'Hương Ly, Jombie (G5R), RIN songs Remix',
+            pathSong: './songs/list-song/14.m4a',
+            duration: '03:25',
+        },
+        {
+            img: './img/songs/2.jpeg',
+            title: 'Yêu Đừng Sợ Đau',
+            singer: 'Ngô Lan Hương, Cukak Remix',
+            pathSong: './songs/list-song/15.m4a',
+            duration: '03:51',
+            type: 'vip',
+        },
 
-            // =======================================
+        // =======================================
 
-            {
-                title: 'Lỡ Hẹn Với Dòng Lam',
-                singer: 'Thái Học',
-                pathSong: './songs/list-song/lhdsl.mp3',
-                duration: '05:43',
-                type: 'vip',
-                img: 'https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/4/2/a/5/42a564469b6a80f9d288866ba8751b2e.jpg',
-            },
+        {
+            title: 'Lỡ Hẹn Với Dòng Lam',
+            singer: 'Thái Học',
+            pathSong: './songs/list-song/lhdsl.mp3',
+            duration: '05:43',
+            type: 'vip',
+            img: 'https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/4/2/a/5/42a564469b6a80f9d288866ba8751b2e.jpg',
+        },
 
-            {
-                img: './img/discover/ctn2/3.jpg',
-                title: 'Into Your Arms',
-                singer: 'Witt Lowry ft. Ava Max',
-                time: '3 ngày trước',
-                pathSong: './songs/vip/Into Your Arms - Witt Lowry ft. Ava Max (Lyrics + Vietsub) - TikTok ♫.mp3',
-                type: 'free',
-                duration: '02:07',
-            },
+        {
+            img: './img/discover/ctn2/3.jpg',
+            title: 'Into Your Arms',
+            singer: 'Witt Lowry ft. Ava Max',
+            time: '3 ngày trước',
+            pathSong: './songs/vip/Into Your Arms - Witt Lowry ft. Ava Max (Lyrics + Vietsub) - TikTok ♫.mp3',
+            type: 'free',
+            duration: '02:07',
+        },
 
-            {
-                img: './img/discover/ctn2/4.webp',
-                title: 'Thế Giới Trong Em',
-                singer: 'Hương Ly,',
-                time: 'LY.M',
-                pathSong: './songs/vip/thegioitrongem.mp3',
-                type: 'free',
-                duration: '04:02',
-            },
-            {
-                img: './img/discover/ctn2/5.webp',
-                title: "Wavin' Flag",
-                singer: "K'NAAN",
-                time: '2 ngày trước',
-                pathSong: "./songs/vip/K'NAAN - Wavin' Flag (Coca-Cola Celebration Mix).mp3",
-                type: 'free',
-                duration: '03:44',
-            },
-            {
-                img: './img/discover/ctn2/6.webp',
-                title: "I'm So Happy",
-                singer: 'Jeremy Zucker,BENEE',
-                time: '3 ngày trước',
-                pathSong: './songs/vip/Into Your Arms - Witt Lowry ft. Ava Max (Lyrics + Vietsub) - TikTok ♫.mp3',
-                type: 'free',
-                duration: '06:03',
-            },
-            {
-                img: './img/discover/ctn2/7.jpg',
-                title: 'Để Rồi Tổn Thương',
-                singer: 'Sara Luu,JayKii',
-                time: '2 ngày trước',
-                pathSong: './songs/vip/deroitonthuong.mp3',
-                type: 'vip',
-                duration: '05:17',
-            },
-            {
-                img: './img/discover/ctn2/11.jpg',
-                title: 'Em Lấy Chồng',
-                singer: 'Khắc Việt,ACV',
-                time: '6 ngày trước',
-                pathSong: './songs/vip/Emlaychong.mp3',
-                type: 'free',
-                duration: '04:22',
-            },
+        {
+            img: './img/discover/ctn2/4.webp',
+            title: 'Thế Giới Trong Em',
+            singer: 'Hương Ly,',
+            time: 'LY.M',
+            pathSong: './songs/vip/thegioitrongem.mp3',
+            type: 'free',
+            duration: '04:02',
+        },
+        {
+            img: './img/discover/ctn2/5.webp',
+            title: "Wavin' Flag",
+            singer: "K'NAAN",
+            time: '2 ngày trước',
+            pathSong: "./songs/vip/K'NAAN - Wavin' Flag (Coca-Cola Celebration Mix).mp3",
+            type: 'free',
+            duration: '03:44',
+        },
+        {
+            img: './img/discover/ctn2/6.webp',
+            title: "I'm So Happy",
+            singer: 'Jeremy Zucker,BENEE',
+            time: '3 ngày trước',
+            pathSong: './songs/vip/Into Your Arms - Witt Lowry ft. Ava Max (Lyrics + Vietsub) - TikTok ♫.mp3',
+            type: 'free',
+            duration: '06:03',
+        },
+        {
+            img: './img/discover/ctn2/7.jpg',
+            title: 'Để Rồi Tổn Thương',
+            singer: 'Sara Luu,JayKii',
+            time: '2 ngày trước',
+            pathSong: './songs/vip/deroitonthuong.mp3',
+            type: 'vip',
+            duration: '05:17',
+        },
+        {
+            img: './img/discover/ctn2/11.jpg',
+            title: 'Em Lấy Chồng',
+            singer: 'Khắc Việt,ACV',
+            time: '6 ngày trước',
+            pathSong: './songs/vip/Emlaychong.mp3',
+            type: 'free',
+            duration: '04:22',
+        },
 
-            // -------- play list   ------------
-            {
-                img: './img/playListSongs/tshk.jfif',
-                title: 'Tây Sơn Hào Kiệt',
-                singer: 'JOMBIE X PHAN ANN',
-                time: '6 ngày trước',
-                pathSong: './songs/list-song/TÂY SƠN HÀO KIỆT (Remix) - JOMBIE X PHAN ANN (MV Hoạt Hình).mp3',
-                type: 'free',
-                duration: '4:22',
-            },
-            {
-                img: './img/playListSongs/hlpb.png',
-                title: 'Hùng Long Phong Bá',
-                singer: 'Jombie, Danhka, Bean, Sakhar',
-                time: '6 ngày trước',
-                pathSong: './songs/list-song/Hùng Long Phong Bá.mp3',
-                type: 'free',
-                duration: '4:22',
-            },
-            {
-                img: './img/playListSongs/ll.jpg',
-                title: 'Lưu Ly',
-                singer: 'D.T',
-                time: '6 ngày trước',
-                pathSong: './songs/list-song/LƯU LY (Rap Việt Mùa 2) - D.T - Lyrics - Tú Tú ✔.mp3',
-                type: 'free',
-                duration: '4:22',
-            },
-            {
-                img: './img/playListSongs/ds.jfif',
-                title: 'Đất sóc',
-                singer: 'JOMBIE',
-                time: '6 ngày trước',
-                pathSong: './songs/list-song/JOMBIE - ĐẤT SÓC - OFFICIAL MV.mp3',
-                type: 'free',
-                duration: '4:22',
-            },
-            // ------------- us -------------------
-            {
-                img: 'https://i.ytimg.com/vi/shLUsd7kQCI/maxresdefault.jpg',
-                title: 'Unstoppable',
-                singer: 'Sia',
-                time: '6 ngày trước',
-                pathSong: './songs/us/Sia - Unstoppable (Lyrics).mp3',
-                type: 'free',
-                duration: '4:22',
-            },
-            {
-                img: './img/playListSongs/hlpb.png',
-                title: 'Sweet but Psycho',
-                singer: 'Ava Max ',
-                time: '6 ngày trước',
-                pathSong: './songs/us/Ava Max - Sweet but Psycho (Lyrics).mp3',
-                type: 'free',
-                duration: '4:22',
-            },
-            {
-                img: 'https://i.ytimg.com/vi/28yhlw1qH9Y/sddefault.jpg',
-                title: 'The Box',
-                singer: 'Roddy Ricch',
-                time: '6 ngày trước',
-                pathSong: './songs/us/Roddy Ricch - The Box [Official Audio].mp3',
-                type: 'free',
-                duration: '4:22',
-            },
-        ],
+        // -------- play list   ------------
+        {
+            img: './img/playListSongs/tshk.jfif',
+            title: 'Tây Sơn Hào Kiệt',
+            singer: 'JOMBIE X PHAN ANN',
+            time: '6 ngày trước',
+            pathSong: './songs/list-song/TÂY SƠN HÀO KIỆT (Remix) - JOMBIE X PHAN ANN (MV Hoạt Hình).mp3',
+            type: 'free',
+            duration: '4:22',
+        },
+        {
+            img: './img/playListSongs/hlpb.png',
+            title: 'Hùng Long Phong Bá',
+            singer: 'Jombie, Danhka, Bean, Sakhar',
+            time: '6 ngày trước',
+            pathSong: './songs/list-song/Hùng Long Phong Bá.mp3',
+            type: 'free',
+            duration: '4:22',
+        },
+        {
+            img: './img/playListSongs/ll.jpg',
+            title: 'Lưu Ly',
+            singer: 'D.T',
+            time: '6 ngày trước',
+            pathSong: './songs/list-song/LƯU LY (Rap Việt Mùa 2) - D.T - Lyrics - Tú Tú ✔.mp3',
+            type: 'free',
+            duration: '4:22',
+        },
+        {
+            img: './img/playListSongs/ds.jfif',
+            title: 'Đất sóc',
+            singer: 'JOMBIE',
+            time: '6 ngày trước',
+            pathSong: './songs/list-song/JOMBIE - ĐẤT SÓC - OFFICIAL MV.mp3',
+            type: 'free',
+            duration: '4:22',
+        },
+        // ------------- us -------------------
+        {
+            img: 'https://i.ytimg.com/vi/shLUsd7kQCI/maxresdefault.jpg',
+            title: 'Unstoppable',
+            singer: 'Sia',
+            time: '6 ngày trước',
+            pathSong: './songs/us/Sia - Unstoppable (Lyrics).mp3',
+            type: 'free',
+            duration: '4:22',
+        },
+        {
+            img: './img/playListSongs/hlpb.png',
+            title: 'Sweet but Psycho',
+            singer: 'Ava Max ',
+            time: '6 ngày trước',
+            pathSong: './songs/us/Ava Max - Sweet but Psycho (Lyrics).mp3',
+            type: 'free',
+            duration: '4:22',
+        },
+        {
+            img: 'https://i.ytimg.com/vi/28yhlw1qH9Y/sddefault.jpg',
+            title: 'The Box',
+            singer: 'Roddy Ricch',
+            time: '6 ngày trước',
+            pathSong: './songs/us/Roddy Ricch - The Box [Official Audio].mp3',
+            type: 'free',
+            duration: '4:22',
+        },
+    ],
 
-        listSinger: [
-            {
-                Singer: 'Jack',
-                Folower: '1 triệu quan tâm',
-                img: './img/listSinger/jack.png',
-            },
-            {
-                Singer: 'Hương Ly',
-                Folower: '190k quan tâm',
-                img: './img/listSinger/huong-ly.png',
-            },
-            {
-                Singer: 'Karik',
-                Folower: '600k quan tâm',
-                img: './img/listSinger/karik.png',
-            },
-            {
-                Singer: 'Onlyc',
-                Folower: '120k quan tâm',
-                img: './img/listSinger/onlyc.png',
-            },
-            {
-                Singer: 'Mr-siro',
-                Folower: '1 triệu quan tâm',
-                img: './img/listSinger/mr-siro.png',
-            },
-        ],
+    listSinger: [
+        {
+            Singer: 'Jack',
+            Folower: '1 triệu quan tâm',
+            img: './img/listSinger/jack.png',
+        },
+        {
+            Singer: 'Hương Ly',
+            Folower: '190k quan tâm',
+            img: './img/listSinger/huong-ly.png',
+        },
+        {
+            Singer: 'Karik',
+            Folower: '600k quan tâm',
+            img: './img/listSinger/karik.png',
+        },
+        {
+            Singer: 'Onlyc',
+            Folower: '120k quan tâm',
+            img: './img/listSinger/onlyc.png',
+        },
+        {
+            Singer: 'Mr-siro',
+            Folower: '1 triệu quan tâm',
+            img: './img/listSinger/mr-siro.png',
+        },
+    ],
 
-        render: function () {
-            const htmls = this.songs.map((song, index) => {
-                song['id'] = index
-                return `
+    render: function () {
+        const htmls = this.songs.map((song, index) => {
+            song['id'] = index
+            return `
                 <div class="current-playing-body ${this.currentIndex === index ? 'active' : ''}" data-index="${index}">
                     <div class="current-playing-body-info">
                         <div class="current-playing-body-image" style="background: url('${song.img}'); background-size: cover; background-repeat: no-repeat"></div>
@@ -427,262 +426,263 @@ async function main() {
                     </div>
                 </div>
                 `
-            })
+        })
 
-            return htmls
-        },
+        return htmls
+    },
 
-        defineProperties: function () {
-            Object.defineProperty(this, 'currentSong', {
-                get: function () {
-                    return this.songs[this.currentIndex]
-                },
-            })
-        },
+    defineProperties: function () {
+        Object.defineProperty(this, 'currentSong', {
+            get: function () {
+                return this.songs[this.currentIndex]
+            },
+        })
+    },
 
-        loadCurrentSong: function () {
-            audio.setAttribute('src', this.currentSong.pathSong)
-            currentSongsName.forEach((currentSongName) => {
-                currentSongName.innerText = this.currentSong.title
-            })
-            musicInfoSingers.forEach((musicInfoSinger) => {
-                musicInfoSinger.innerText = this.currentSong.singer
-            })
+    loadCurrentSong: function () {
+        audio.setAttribute('src', this.currentSong.pathSong)
+        currentSongsName.forEach((currentSongName) => {
+            currentSongName.innerText = this.currentSong.title
+        })
+        musicInfoSingers.forEach((musicInfoSinger) => {
+            musicInfoSinger.innerText = this.currentSong.singer
+        })
 
-            Object.assign(currentPlayingImage.style, {
-                background: `url('${this.currentSong.img}')`,
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-            })
-            currentPlayingImage.style.background = `url('${this.currentSong.img}')`
-            currentPlayingImage.style.backgroundSize = 'cover'
-            cdThumbs.forEach((cdThumb) => {
-                cdThumb.style.background = `url('${this.currentSong.img}')`
-                cdThumb.style.backgroundSize = 'cover'
-            })
-            currentSongDuration.innerText = this.currentSong.duration
+        Object.assign(currentPlayingImage.style, {
+            background: `url('${this.currentSong.img}')`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+        })
+        currentPlayingImage.style.background = `url('${this.currentSong.img}')`
+        currentPlayingImage.style.backgroundSize = 'cover'
+        cdThumbs.forEach((cdThumb) => {
+            cdThumb.style.background = `url('${this.currentSong.img}')`
+            cdThumb.style.backgroundSize = 'cover'
+        })
+        currentSongDuration.innerText = this.currentSong.duration
 
-            listSongs.innerHTML = this.render().join('')
+        listSongs.innerHTML = this.render().join('')
 
-            personalPlayList.innerHTML = this.render().join('')
-        },
+        personalPlayList.innerHTML = this.render().join('')
+    },
 
-        handleEvent: function () {
-            const _this = this
+    handleEvent: function () {
+        const _this = this
 
-            const avata = document.querySelector('.avatar')
-            avata.onclick = function () {
-                location.assign('https://www.facebook.com/HuanPG05')
-            }
+        const avata = document.querySelector('.avatar')
+        avata.onclick = function () {
+            location.assign('https://www.facebook.com/HuanPG05')
+        }
 
-            togglePlayBtn.onclick = function () {
-                _this.isPlaying ? audio.pause() : audio.play()
-            }
+        togglePlayBtn.onclick = function () {
+            _this.isPlaying ? audio.pause() : audio.play()
+        }
 
-            togglePlayThumb.onclick = function () {
-                _this.isPlaying ? audio.pause() : audio.play()
-            }
+        togglePlayThumb.onclick = function () {
+            _this.isPlaying ? audio.pause() : audio.play()
+        }
 
-            audio.onplay = function () {
-                togglePlayBtn.classList.add('playing')
-                _this.isPlaying = true
-                musicControl.classList.remove('hide')
-                cdThumbAnimate.play()
-                cdThumbInfoAnimate.play()
-                togglePlayThumb.innerText = 'Tạm Dừng'
-            }
+        audio.onplay = function () {
+            togglePlayBtn.classList.add('playing')
+            _this.isPlaying = true
+            musicControl.classList.remove('hide')
+            cdThumbAnimate.play()
+            cdThumbInfoAnimate.play()
+            togglePlayThumb.innerText = 'Tạm Dừng'
+        }
 
-            audio.onpause = function () {
-                togglePlayBtn.classList.remove('playing')
-                _this.isPlaying = false
-                cdThumbAnimate.pause()
-                cdThumbInfoAnimate.pause()
-                togglePlayThumb.innerText = 'Tiếp Tục Phát'
-            }
+        audio.onpause = function () {
+            togglePlayBtn.classList.remove('playing')
+            _this.isPlaying = false
+            cdThumbAnimate.pause()
+            cdThumbInfoAnimate.pause()
+            togglePlayThumb.innerText = 'Tiếp Tục Phát'
+        }
 
-            audio.ontimeupdate = function () {
-                const progressPercent = (audio.currentTime / audio.duration) * 100
-                if (audio.duration) {
-                    progress.value = progressPercent
-                    function getSongDuration(song) {
-                        let minutes = Math.floor(song.duration / 60)
-                        let seconds = Math.floor(song.duration - minutes * 60)
-                        if (seconds < 10) {
-                            return minutes + ':0' + seconds
-                        }
-                        return minutes + ':' + seconds
-                    }
-                    document.querySelector('.duration-song').innerText = getSongDuration(audio)
-                }
-
-                function getCurrentTime(song) {
-                    let minutes = Math.floor(song.currentTime / 60)
-                    let seconds = Math.floor(song.currentTime - minutes * 60)
-
+        audio.ontimeupdate = function () {
+            const progressPercent = (audio.currentTime / audio.duration) * 100
+            if (audio.duration) {
+                progress.value = progressPercent
+                function getSongDuration(song) {
+                    let minutes = Math.floor(song.duration / 60)
+                    let seconds = Math.floor(song.duration - minutes * 60)
                     if (seconds < 10) {
                         return minutes + ':0' + seconds
                     }
-
                     return minutes + ':' + seconds
                 }
-                document.querySelector('.current-time').innerText = getCurrentTime(audio)
+                document.querySelector('.duration-song').innerText = getSongDuration(audio)
             }
 
-            progress.oninput = () => {
-                const sweek = (audio.duration / 100) * progress.value
-                audio.currentTime = sweek
-            }
+            function getCurrentTime(song) {
+                let minutes = Math.floor(song.currentTime / 60)
+                let seconds = Math.floor(song.currentTime - minutes * 60)
 
-            nextButton.onclick = function () {
-                if (_this.isRandom) {
-                    _this.randomSong()
+                if (seconds < 10) {
+                    return minutes + ':0' + seconds
                 }
-                _this.nextSong()
-                _this.songActiveIntoView()
+
+                return minutes + ':' + seconds
+            }
+            document.querySelector('.current-time').innerText = getCurrentTime(audio)
+        }
+
+        progress.oninput = () => {
+            const sweek = (audio.duration / 100) * progress.value
+            audio.currentTime = sweek
+        }
+
+        nextButton.onclick = function () {
+            if (_this.isRandom) {
+                _this.randomSong()
+            }
+            _this.nextSong()
+            _this.songActiveIntoView()
+            audio.play()
+        }
+
+        prevButton.onclick = function () {
+            if (_this.isRandom) {
+                _this.randomSong()
+            }
+            _this.prevSong()
+            _this.songActiveIntoView()
+            audio.play()
+        }
+
+        randomButton.onclick = function () {
+            _this.isRandom = !_this.isRandom
+            if (_this.isRandom) {
+                _this.isRepeat = false
+                repeatButton.classList.remove('active')
+            }
+
+            randomButton.classList.toggle('active', _this.isRandom)
+        }
+
+        repeatButton.onclick = function () {
+            _this.isRepeat = !_this.isRepeat
+            if (_this.isRepeat) {
+                _this.isRandom = false
+                randomButton.classList.remove('active')
+            }
+
+            repeatButton.classList.toggle('active', _this.isRepeat)
+        }
+
+        audio.onended = function () {
+            if (_this.isRepeat) {
+                audio.play()
+            } else if (_this.isRandom) {
+                _this.randomSong()
+                audio.play()
+            } else {
+                nextButton.click()
+            }
+        }
+
+        playListSuggests.onclick = (e) => {
+            const targetSuggest = e.target.closest('.current-playing-body:not(.active)')
+            if (targetSuggest) {
+                _this.currentIndex = Number(targetSuggest.getAttribute('data-index'))
+                _this.loadCurrentSong()
                 audio.play()
             }
+        }
 
-            prevButton.onclick = function () {
-                if (_this.isRandom) {
-                    _this.randomSong()
-                }
-                _this.prevSong()
-                _this.songActiveIntoView()
+        personalPlayList.onclick = function (e) {
+            const targetSuggest = e.target.closest('.current-playing-body:not(.active)')
+            if (targetSuggest) {
+                _this.currentIndex = Number(targetSuggest.getAttribute('data-index'))
+                _this.loadCurrentSong()
                 audio.play()
             }
+        }
+    },
 
-            randomButton.onclick = function () {
-                _this.isRandom = !_this.isRandom
-                if (_this.isRandom) {
-                    _this.isRepeat = false
-                    repeatButton.classList.remove('active')
-                }
+    playList: [],
 
-                randomButton.classList.toggle('active', _this.isRandom)
-            }
+    // cá nhân
+    personalHandle: function () {
+        musicControl.classList.remove('hide')
+        // xử lí khi chọn các page trong personal
+        personalListOptions.forEach((personalListOption) => {
+            personalListOption.onclick = function (e) {
+                const personalListId = personalListOption.getAttribute('id')
 
-            repeatButton.onclick = function () {
-                _this.isRepeat = !_this.isRepeat
-                if (_this.isRepeat) {
-                    _this.isRandom = false
-                    randomButton.classList.remove('active')
-                }
+                if (e.target.closest(`#${personalListId}:not(.active)`)) {
+                    const personalItemActives = [...document.querySelectorAll('.personal-content-item.active')]
 
-                repeatButton.classList.toggle('active', _this.isRepeat)
-            }
-
-            audio.onended = function () {
-                if (_this.isRepeat) {
-                    audio.play()
-                } else if (_this.isRandom) {
-                    _this.randomSong()
-                    audio.play()
-                } else {
-                    nextButton.click()
-                }
-            }
-
-            playListSuggests.onclick = (e) => {
-                const targetSuggest = e.target.closest('.current-playing-body:not(.active)')
-                if (targetSuggest) {
-                    _this.currentIndex = Number(targetSuggest.getAttribute('data-index'))
-                    _this.loadCurrentSong()
-                    audio.play()
-                }
-            }
-
-            personalPlayList.onclick = function (e) {
-                const targetSuggest = e.target.closest('.current-playing-body:not(.active)')
-                if (targetSuggest) {
-                    _this.currentIndex = Number(targetSuggest.getAttribute('data-index'))
-                    _this.loadCurrentSong()
-                    audio.play()
-                }
-            }
-        },
-
-        playList: [],
-
-        // cá nhân
-        personalHandle: function () {
-            musicControl.classList.remove('hide')
-            // xử lí khi chọn các page trong personal
-            personalListOptions.forEach((personalListOption) => {
-                personalListOption.onclick = function (e) {
-                    const personalListId = personalListOption.getAttribute('id')
-
-                    if (e.target.closest(`#${personalListId}:not(.active)`)) {
-                        const personalItemActives = [...document.querySelectorAll('.personal-content-item.active')]
-
-                        personalItemActives.forEach((personalItemActive) => {
-                            personalItemActive.classList.remove('active')
-                            // khi chon tat ca
-                            if (e.target.getAttribute('id').includes('overview')) {
-                                personalContentItems.forEach((personalContentItem) => {
-                                    personalContentItem.classList.add('active')
-                                })
-                            }
-
-                            // khi chon playlist
-                            else if (e.target.getAttribute('id').includes('playlist')) {
-                                personalContentItems.forEach((personalContentItem) => {
-                                    personalContentItem.classList.remove('active')
-                                })
-                                document.querySelector(`.personal-content-item.${personalListId}`).classList.add('active')
-                                document.querySelector(`.personal-content-item.mv`).classList.add('active')
-                            } else {
-                                document.querySelector(`.personal-content-item.${personalListId}`).classList.add('active')
-                            }
-                        })
-                    }
-                    document.querySelector('.personal-option.active').classList.remove('active')
-
-                    personalListOption.classList.add('active')
-                }
-            })
-
-            // slider handle
-            const sliderItem = this.songs.map((song) => {
-                return `<img class="slider-item" src="${song.img}" alt=""></img>`
-            })
-
-            document.querySelector('.personal-content-music-btn-playall').onclick = function () {
-                audio.play()
-            }
-
-            sliders.innerHTML = sliderItem.join('')
-            const sliderItems = [...document.querySelectorAll('.slider-item')]
-            let index = 0
-            setInterval(() => {
-                if (index < sliderItems.length - 1) {
-                    index++
-                } else {
-                    index = 0
-                }
-
-                sliders.style.transform = `translateX(-${250 * index}px)`
-            }, 2000)
-
-            // playlist handle
-
-            playlistItems.forEach((playlistItem) => {
-                playlistItem.onclick = function (e) {
-                    if (e.target.closest('.playlist-container-item')) {
-                        // hide page acitve and show player
-                        player.classList.remove('hide')
-                        if (!player.classList.contains('hide')) {
-                            document.querySelector('.page-item.active').classList.remove('active')
+                    personalItemActives.forEach((personalItemActive) => {
+                        personalItemActive.classList.remove('active')
+                        // khi chon tat ca
+                        if (e.target.getAttribute('id').includes('overview')) {
+                            personalContentItems.forEach((personalContentItem) => {
+                                personalContentItem.classList.add('active')
+                            })
                         }
 
-                        musicControl.classList.remove('hide')
-                    }
+                        // khi chon playlist
+                        else if (e.target.getAttribute('id').includes('playlist')) {
+                            personalContentItems.forEach((personalContentItem) => {
+                                personalContentItem.classList.remove('active')
+                            })
+                            document.querySelector(`.personal-content-item.${personalListId}`).classList.add('active')
+                            document.querySelector(`.personal-content-item.mv`).classList.add('active')
+                        } else {
+                            document.querySelector(`.personal-content-item.${personalListId}`).classList.add('active')
+                        }
+                    })
                 }
-            })
+                document.querySelector('.personal-option.active').classList.remove('active')
 
-            // artist handle
+                personalListOption.classList.add('active')
+            }
+        })
 
-            const singerItem = this.listSinger.map((singer) => {
-                return `
+        // slider handle
+        const sliderItem = this.songs.map((song) => {
+            return `<img class="slider-item" src="${song.img}" alt=""></img>`
+        })
+
+        sliders.innerHTML = sliderItem.join('')
+        const sliderItems = [...document.querySelectorAll('.slider-item')]
+        let index = 0
+        setInterval(() => {
+            if (index < sliderItems.length - 1) {
+                index++
+            } else {
+                index = 0
+            }
+
+            sliders.style.transform = `translateX(-${250 * index}px)`
+        }, 2000)
+
+        // khi click vào nút phát tất cả
+        document.querySelector('.personal-content-music-btn-playall').onclick = function () {
+            audio.play()
+        }
+
+        // playlist handle
+
+        playlistItems.forEach((playlistItem) => {
+            playlistItem.onclick = function (e) {
+                if (e.target.closest('.playlist-container-item')) {
+                    // hide page acitve and show player
+                    player.classList.remove('hide')
+                    if (!player.classList.contains('hide')) {
+                        document.querySelector('.page-item.active').classList.remove('active')
+                    }
+
+                    musicControl.classList.remove('hide')
+                }
+            }
+        })
+
+        // artist handle
+
+        const singerItem = this.listSinger.map((singer) => {
+            return `
                     <div class="artist-item">
                         <div class="artist-item-image">
                             <img src="${singer.img}" alt="" />
@@ -701,169 +701,169 @@ async function main() {
                         </div>
                     </div>
                 `
-            })
+        })
 
-            document.querySelector('.artist-container').innerHTML = singerItem.join('')
-        },
+        document.querySelector('.artist-container').innerHTML = singerItem.join('')
+    },
 
-        //Khám phá
+    //Khám phá
 
-        discover1: [
-            //
-            { img: './img/discover/ctn1/0.jpg' },
-            { img: './img/discover/ctn1/1.jpg' },
-            { img: './img/discover/ctn1/2.jpg' },
-            { img: './img/discover/ctn1/3.jpg' },
-            { img: './img/discover/ctn1/4.jpg' },
-            { img: './img/discover/ctn1/5.jpg' },
-            { img: './img/discover/ctn1/6.jpg' },
-            { img: './img/discover/ctn1/7.jpg' },
-            { img: './img/discover/ctn1/8.jpg' },
-        ],
+    discover1: [
+        //
+        { img: './img/discover/ctn1/0.jpg' },
+        { img: './img/discover/ctn1/1.jpg' },
+        { img: './img/discover/ctn1/2.jpg' },
+        { img: './img/discover/ctn1/3.jpg' },
+        { img: './img/discover/ctn1/4.jpg' },
+        { img: './img/discover/ctn1/5.jpg' },
+        { img: './img/discover/ctn1/6.jpg' },
+        { img: './img/discover/ctn1/7.jpg' },
+        { img: './img/discover/ctn1/8.jpg' },
+    ],
 
-        discoverHandle: function () {
-            const _this = this
-            const htmls = this.discover1.map((slide, index) => {
-                return `
+    discoverHandle: function () {
+        const _this = this
+        const htmls = this.discover1.map((slide, index) => {
+            return `
                     <img src="${slide.img}" alt="" class="discover-slide ${index == 0 ? 'discover-slide-first' : index == 1 ? 'discover-slide-second' : index == 2 ? 'discover-slide-third' : 'discover-slide-four'}" >
                 `
-            })
-            discoverSlideContainer.innerHTML = htmls.join('')
+        })
+        discoverSlideContainer.innerHTML = htmls.join('')
 
-            discoverNextSlide.onclick = function () {
-                _this.handleNextSlide(_this.discoverSlideIndex)
-            }
-            discoverPrevSlide.onclick = function () {
-                _this.handleNextSlide()
-            }
-            setInterval(() => {
-                _this.handleNextSlide()
-            }, 2000)
-        },
+        discoverNextSlide.onclick = function () {
+            _this.handleNextSlide(_this.discoverSlideIndex)
+        }
+        discoverPrevSlide.onclick = function () {
+            _this.handleNextSlide()
+        }
+        setInterval(() => {
+            _this.handleNextSlide()
+        }, 2000)
+    },
 
-        handleNextSlide: function () {
-            const firsSlide = document.querySelector('.discover-slide-first')
-            const secondSlide = document.querySelector('.discover-slide-second')
-            const thirdSlide = document.querySelector('.discover-slide-third')
-            const fourSlide = document.querySelectorAll('.discover-slide-four')
+    handleNextSlide: function () {
+        const firsSlide = document.querySelector('.discover-slide-first')
+        const secondSlide = document.querySelector('.discover-slide-second')
+        const thirdSlide = document.querySelector('.discover-slide-third')
+        const fourSlide = document.querySelectorAll('.discover-slide-four')
 
-            firsSlide.style.opacity = 0
-            firsSlide.classList.replace('discover-slide-first', 'discover-slide-four')
+        firsSlide.style.opacity = 0
+        firsSlide.classList.replace('discover-slide-first', 'discover-slide-four')
 
-            secondSlide.classList.replace('discover-slide-second', 'discover-slide-first')
+        secondSlide.classList.replace('discover-slide-second', 'discover-slide-first')
 
-            thirdSlide.classList.replace('discover-slide-third', 'discover-slide-second')
-            const randomIndex = Math.floor(Math.random() * fourSlide.length)
-            fourSlide[randomIndex].classList.replace('discover-slide-four', 'discover-slide-third')
-            fourSlide[randomIndex].style.opacity = 1
-        },
+        thirdSlide.classList.replace('discover-slide-third', 'discover-slide-second')
+        const randomIndex = Math.floor(Math.random() * fourSlide.length)
+        fourSlide[randomIndex].classList.replace('discover-slide-four', 'discover-slide-third')
+        fourSlide[randomIndex].style.opacity = 1
+    },
 
-        pageHandle: function () {
-            sidebarPageItems.forEach((sidebarPageItem) => {
-                sidebarPageItem.onclick = function (e) {
-                    musicControl.classList.add('hide')
-                    const pageId = sidebarPageItem.getAttribute('id')
+    pageHandle: function () {
+        sidebarPageItems.forEach((sidebarPageItem) => {
+            sidebarPageItem.onclick = function (e) {
+                musicControl.classList.add('hide')
+                const pageId = sidebarPageItem.getAttribute('id')
 
-                    if (e.target.closest(`#${pageId}`)) {
-                        if (pageId === 'follow') {
-                            alert('Page này chưa có ^^')
-                        } else if (pageId === 'personal') {
-                            musicControl.classList.remove('hide')
-                            if (document.querySelector(`.page-item.active`)) {
-                                document.querySelector(`.page-item.active`).classList.remove('active')
-                            }
-                            document.querySelector(`.page-item.${pageId}`).classList.add('active')
-                        } else {
-                            if (document.querySelector(`.page-item.active`)) {
-                                document.querySelector(`.page-item.active`).classList.remove('active')
-                            }
-                            document.querySelector(`.page-item.${pageId}`).classList.add('active')
+                if (e.target.closest(`#${pageId}`)) {
+                    if (pageId === 'follow') {
+                        alert('Page này chưa có ^^')
+                    } else if (pageId === 'personal') {
+                        musicControl.classList.remove('hide')
+                        if (document.querySelector(`.page-item.active`)) {
+                            document.querySelector(`.page-item.active`).classList.remove('active')
                         }
+                        document.querySelector(`.page-item.${pageId}`).classList.add('active')
+                    } else {
+                        if (document.querySelector(`.page-item.active`)) {
+                            document.querySelector(`.page-item.active`).classList.remove('active')
+                        }
+                        document.querySelector(`.page-item.${pageId}`).classList.add('active')
                     }
-
-                    document.querySelector('.sidebar-main-item-page.active').classList.remove('active')
-                    player.classList.add('hide')
-                    sidebarPageItem.classList.add('active')
                 }
-            })
-        },
 
-        nextSong: function () {
-            this.currentIndex++
-            if (this.currentIndex >= this.songs.length) {
-                this.currentIndex = 0
+                document.querySelector('.sidebar-main-item-page.active').classList.remove('active')
+                player.classList.add('hide')
+                sidebarPageItem.classList.add('active')
             }
+        })
+    },
 
-            this.loadCurrentSong()
-        },
+    nextSong: function () {
+        this.currentIndex++
+        if (this.currentIndex >= this.songs.length) {
+            this.currentIndex = 0
+        }
 
-        prevSong: function () {
-            this.currentIndex--
-            if (this.currentIndex < 0) {
-                this.currentIndex = this.songs.length - 1
+        this.loadCurrentSong()
+    },
+
+    prevSong: function () {
+        this.currentIndex--
+        if (this.currentIndex < 0) {
+            this.currentIndex = this.songs.length - 1
+        }
+
+        this.loadCurrentSong()
+    },
+
+    songActiveIntoView: function () {
+        setTimeout(() => {
+            const songActive = document.querySelector('.current-playing-body.active')
+            const songIndex = songActive.getAttribute('data-index')
+            if (songIndex < 1) {
+                songActive.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                })
+            } else {
+                songActive.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                })
             }
+        }, 200)
+    },
 
-            this.loadCurrentSong()
-        },
+    playerIndexes: [],
 
-        songActiveIntoView: function () {
-            setTimeout(() => {
-                const songActive = document.querySelector('.current-playing-body.active')
-                const songIndex = songActive.getAttribute('data-index')
-                if (songIndex < 1) {
-                    songActive.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center',
+    randomSong: function () {
+        let newIndex
+
+        do {
+            newIndex = Math.floor(Math.random() * this.songs.length)
+        } while (this.playerIndexes.includes(newIndex))
+
+        this.playerIndexes.push(newIndex)
+
+        this.currentIndex = newIndex
+        this.loadCurrentSong()
+    },
+
+    handleSearch: function () {
+        const _this = this
+
+        appElement.onclick = function (e) {
+            const targetSearch = e.target.closest('.header-search')
+            const tagetSuggest = e.target.closest('.search-suggest')
+            // handle when focus input
+            if (targetSearch || tagetSuggest) {
+                searchElement.style.borderRadius = '20px 20px 0 0'
+                searchSuggest.classList.remove('hide')
+                searchElement.oninput = () => {
+                    const filterSearch = _this.songs.filter((song) => {
+                        return song.title.toLowerCase().includes(searchElement.value.trim().toLowerCase())
                     })
-                } else {
-                    songActive.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'nearest',
-                    })
-                }
-            }, 200)
-        },
 
-        playerIndexes: [],
+                    const suggestForYou = document.querySelector('.show-suggest-for-you')
+                    const showSongsSuggest = document.querySelector('.show-songs-suggest')
+                    if (searchElement.value.trim() !== '') {
+                        suggestForYou.classList.add('hide')
+                        showSongsSuggest.classList.remove('hide')
 
-        randomSong: function () {
-            let newIndex
+                        const suggestSongsBody = document.querySelector('.show-suggest-songs-body')
 
-            do {
-                newIndex = Math.floor(Math.random() * this.songs.length)
-            } while (this.playerIndexes.includes(newIndex))
-
-            this.playerIndexes.push(newIndex)
-
-            this.currentIndex = newIndex
-            this.loadCurrentSong()
-        },
-
-        handleSearch: function () {
-            const _this = this
-
-            appElement.onclick = function (e) {
-                const targetSearch = e.target.closest('.header-search')
-                const tagetSuggest = e.target.closest('.search-suggest')
-                // handle when focus input
-                if (targetSearch || tagetSuggest) {
-                    searchElement.style.borderRadius = '20px 20px 0 0'
-                    searchSuggest.classList.remove('hide')
-                    searchElement.oninput = () => {
-                        const filterSearch = _this.songs.filter((song) => {
-                            return song.title.toLowerCase().includes(searchElement.value.trim().toLowerCase())
-                        })
-
-                        const suggestForYou = document.querySelector('.show-suggest-for-you')
-                        const showSongsSuggest = document.querySelector('.show-songs-suggest')
-                        if (searchElement.value.trim() !== '') {
-                            suggestForYou.classList.add('hide')
-                            showSongsSuggest.classList.remove('hide')
-
-                            const suggestSongsBody = document.querySelector('.show-suggest-songs-body')
-
-                            const suggestSongsHtmls = Array.from(filterSearch).map((song) => {
-                                return `
+                        const suggestSongsHtmls = Array.from(filterSearch).map((song) => {
+                            return `
                                     <li id="song-suggest" data-index="${song.id}">
                                         <div class="show-suggest-body-image">
                                             <img src="${song.img}" alt="" />
@@ -874,119 +874,119 @@ async function main() {
                                         </div>
                                     </li>
                                 `
-                            })
+                        })
 
-                            suggestSongsBody.innerHTML = suggestSongsHtmls.join('')
+                        suggestSongsBody.innerHTML = suggestSongsHtmls.join('')
 
-                            // handle when cick songItem and render HTML view
-                            let listSongsSuggest = [...document.querySelectorAll('#song-suggest')]
+                        // handle when cick songItem and render HTML view
+                        let listSongsSuggest = [...document.querySelectorAll('#song-suggest')]
 
-                            listSongsSuggest.forEach((songItem) => {
-                                songItem.onclick = function (e) {
-                                    if (audio.play()) {
-                                        _this.isPlaying = false
-                                    }
-
-                                    player.classList.remove('hide')
-                                    if (!player.classList.contains('hide')) {
-                                        document.querySelector('.page-item.active').classList.remove('active')
-                                    }
-
-                                    musicControl.classList.remove('hide')
-
-                                    cdThumbAnimate.cancel()
-                                    cdThumbInfoAnimate.cancel()
-                                    togglePlayBtn.classList.remove('playing')
-                                    const selectedSong = Array.from(filterSearch).find((songSelect) => {
-                                        return songSelect.id === Number(songItem.dataset.index)
-                                    })
-
-                                    _this.currentIndex = selectedSong.id
-                                    _this.loadCurrentSong()
-
-                                    if (e.target.closest('.search-suggest')) {
-                                        searchSuggest.classList.add('hide')
-                                        player.classList.remove('hide')
-                                    } else {
-                                        player.classList.add('hide')
-                                    }
+                        listSongsSuggest.forEach((songItem) => {
+                            songItem.onclick = function (e) {
+                                if (audio.play()) {
+                                    _this.isPlaying = false
                                 }
-                            })
-                        } else {
-                            suggestForYou.classList.remove('hide')
-                            showSongsSuggest.classList.add('hide')
-                        }
+
+                                player.classList.remove('hide')
+                                if (!player.classList.contains('hide')) {
+                                    document.querySelector('.page-item.active').classList.remove('active')
+                                }
+
+                                musicControl.classList.remove('hide')
+
+                                cdThumbAnimate.cancel()
+                                cdThumbInfoAnimate.cancel()
+                                togglePlayBtn.classList.remove('playing')
+                                const selectedSong = Array.from(filterSearch).find((songSelect) => {
+                                    return songSelect.id === Number(songItem.dataset.index)
+                                })
+
+                                _this.currentIndex = selectedSong.id
+                                _this.loadCurrentSong()
+
+                                if (e.target.closest('.search-suggest')) {
+                                    searchSuggest.classList.add('hide')
+                                    player.classList.remove('hide')
+                                } else {
+                                    player.classList.add('hide')
+                                }
+                            }
+                        })
+                    } else {
+                        suggestForYou.classList.remove('hide')
+                        showSongsSuggest.classList.add('hide')
                     }
-                    // focus ra ngoai => hide suggest
-                } else {
-                    searchElement.style.background = '#e1e1e11a'
-                    searchElement.style.borderRadius = '20px '
-                    searchSuggest.classList.add('hide')
                 }
+                // focus ra ngoai => hide suggest
+            } else {
+                searchElement.style.background = '#e1e1e11a'
+                searchElement.style.borderRadius = '20px '
+                searchSuggest.classList.add('hide')
             }
+        }
+    },
+
+    // THEMES
+
+    dynamicThemes: [
+        // {
+        //     name: 'Default theme',
+        //     img: './background/backroundThemes/11.jpg',
+        //     modalTheme: './background/backroundThemes/11.jpg',
+        //     backgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
+        // },
+        // {
+        //     name: 'Lan Anh ',
+        //     img: './background/backroundThemes/9.jpg',
+        //     modalTheme: './background/backroundThemes/9.jpg',
+        //     backgroundModal: './background/modalThemes/modalTheme3/theme8.jpg',
+        // },
+        // {
+        //     name: 'Lan Anh 2',
+        //     img: './img/background.jpg',
+        //     modalTheme: './img/background.jpg',
+        //     backgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
+        // },
+
+        // {
+        //     name: 'Lan Anh 3',
+        //     img: './background/backroundThemes/10.jpg',
+        //     modalTheme: './background/backroundThemes/10.jpg',
+        //     backgroundModal: './background/modalThemes/modalTheme3/theme8.jpg',
+        // },
+        {
+            name: 'Tháp Eiffel',
+            img: './background/backroundThemes/1.jpg',
+            modalTheme: './background/modalThemes/modalTheme1/theme2.jpg',
+            backgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
         },
+        {
+            name: 'Rosé',
+            img: './background/backroundThemes/2.jpg',
+            modalTheme: './background/modalThemes/modalTheme2/theme1.jpg',
+            backgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
+        },
+    ],
 
-        // THEMES
+    handleThemes: function () {
+        const _this = this
 
-        dynamicThemes: [
-            // {
-            //     name: 'Default theme',
-            //     img: './background/backroundThemes/11.jpg',
-            //     modalTheme: './background/backroundThemes/11.jpg',
-            //     backgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
-            // },
-            // {
-            //     name: 'Lan Anh ',
-            //     img: './background/backroundThemes/9.jpg',
-            //     modalTheme: './background/backroundThemes/9.jpg',
-            //     backgroundModal: './background/modalThemes/modalTheme3/theme8.jpg',
-            // },
-            // {
-            //     name: 'Lan Anh 2',
-            //     img: './img/background.jpg',
-            //     modalTheme: './img/background.jpg',
-            //     backgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
-            // },
+        appElement.addEventListener('click', (e) => {
+            // xu li khi click vao themes options
+            const targetThemesButton = e.target.closest('.header-options-theme')
+            const targetThemes = e.target.closest('.themes')
+            if (targetThemesButton || targetThemes) {
+                themes.classList.remove('hide')
+                const closeThemes = document.querySelector('.close-themes')
+                closeThemes.onclick = function () {
+                    themes.classList.add('hide')
+                    appElement.style.filter = 'brightness(100%)'
+                }
+                appElement.style.filter = 'brightness(40%)'
 
-            // {
-            //     name: 'Lan Anh 3',
-            //     img: './background/backroundThemes/10.jpg',
-            //     modalTheme: './background/backroundThemes/10.jpg',
-            //     backgroundModal: './background/modalThemes/modalTheme3/theme8.jpg',
-            // },
-            {
-                name: 'Tháp Eiffel',
-                img: './background/backroundThemes/1.jpg',
-                modalTheme: './background/modalThemes/modalTheme1/theme2.jpg',
-                backgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
-            },
-            {
-                name: 'Rosé',
-                img: './background/backroundThemes/2.jpg',
-                modalTheme: './background/modalThemes/modalTheme2/theme1.jpg',
-                backgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
-            },
-        ],
-
-        handleThemes: function () {
-            const _this = this
-
-            appElement.addEventListener('click', (e) => {
-                // xu li khi click vao themes options
-                const targetThemesButton = e.target.closest('.header-options-theme')
-                const targetThemes = e.target.closest('.themes')
-                if (targetThemesButton || targetThemes) {
-                    themes.classList.remove('hide')
-                    const closeThemes = document.querySelector('.close-themes')
-                    closeThemes.onclick = function () {
-                        themes.classList.add('hide')
-                        appElement.style.filter = 'brightness(100%)'
-                    }
-                    appElement.style.filter = 'brightness(40%)'
-
-                    // render view dynamic theme
-                    const dynamic = _this.dynamicThemes.map((theme) => {
-                        return `
+                // render view dynamic theme
+                const dynamic = _this.dynamicThemes.map((theme) => {
+                    return `
                             <div class="themes-body-options-item themes-dynamic-options-item" >
                                 <div class="themes-body-options-image">
                                     <img src="${theme.modalTheme}" alt="" theme="${theme.img}" backgroundmodal="${theme.backgroundModal}" id="theme-item" />
@@ -994,105 +994,102 @@ async function main() {
                                 <p>${theme.name}</p>
                             </div>
                         `
+                })
+
+                document.querySelector('.themes-dynamic-options').innerHTML = dynamic.join('')
+            } else {
+                themes.classList.add('hide')
+                appElement.style.filter = 'brightness(100%)'
+            }
+        })
+
+        themes.addEventListener('click', (e) => {
+            if (e.target.closest('.themes-dynamic-options-item')) {
+                // handle when click dynamic theme item
+                const background = document.querySelector('.background')
+                const header = document.querySelector('#header')
+                const headerSidebar = document.querySelector('.logo')
+                const searchSuggest = document.querySelector('.search-suggest')
+
+                if (e.target.closest('.themes-body-options-image')) {
+                    _this.defaultBackgroundModal = e.target.getAttribute('backgroundmodal')
+                    _this.defaultBackground = e.target.getAttribute('theme')
+
+                    Object.assign(background.style, {
+                        background: `url('${_this.defaultBackground}')`,
+                        backgroundSize: 'cover',
                     })
 
-                    document.querySelector('.themes-dynamic-options').innerHTML = dynamic.join('')
-                } else {
+                    Object.assign(header.style, {
+                        background: `url('${_this.defaultBackground}')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'bottom left',
+                    })
+
+                    Object.assign(searchSuggest.style, {
+                        background: `url('${_this.defaultBackgroundModal}')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'bottom left',
+                    })
+
+                    Object.assign(headerSidebar.style, {
+                        background: `url('${_this.defaultBackgroundModal}')`,
+                        backgroundSize: 'cover',
+                    })
+                    Object.assign(themes.style, {
+                        background: `url('${_this.defaultBackgroundModal}')`,
+                        backgroundSize: 'cover',
+                    })
+
+                    Object.assign(musicControl.style, {
+                        background: `url('${_this.defaultBackgroundModal}')`,
+                        backgroundSize: 'cover',
+                    })
+
+                    Object.assign(document.querySelector('.personal-content-music-btn-upload').style, {
+                        background: `url('${_this.defaultBackgroundModal}')`,
+                        backgroundSize: 'cover',
+                    })
+
+                    headerOptionsItems.forEach((headerOptionsItem) => {
+                        Object.assign(headerOptionsItem.style, {
+                            background: `url('${_this.defaultBackgroundModal}')`,
+                            backgroundSize: 'cover',
+                        })
+                    })
+
                     themes.classList.add('hide')
                     appElement.style.filter = 'brightness(100%)'
                 }
-            })
+            }
+        })
+    },
 
-            themes.addEventListener('click', (e) => {
-                if (e.target.closest('.themes-dynamic-options-item')) {
-                    // handle when click dynamic theme item
-                    const background = document.querySelector('.background')
-                    const header = document.querySelector('#header')
-                    const headerSidebar = document.querySelector('.logo')
-                    const searchSuggest = document.querySelector('.search-suggest')
+    start: function () {
+        // defined current song
+        this.defineProperties()
 
-                    if (e.target.closest('.themes-body-options-image')) {
-                        _this.defaultBackgroundModal = e.target.getAttribute('backgroundmodal')
-                        _this.defaultBackground = e.target.getAttribute('theme')
+        // load info / title ... song
+        this.loadCurrentSong()
 
-                        Object.assign(background.style, {
-                            background: `url('${_this.defaultBackground}')`,
-                            backgroundSize: 'cover',
-                        })
+        // handle event in DOM
+        this.handleEvent()
 
-                        Object.assign(header.style, {
-                            background: `url('${_this.defaultBackground}')`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'bottom left',
-                        })
+        // handle when to click personal option
+        this.personalHandle()
 
-                        Object.assign(searchSuggest.style, {
-                            background: `url('${_this.defaultBackgroundModal}')`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'bottom left',
-                        })
+        this.discoverHandle()
+        // handle when chose page
+        this.pageHandle()
 
-                        Object.assign(headerSidebar.style, {
-                            background: `url('${_this.defaultBackgroundModal}')`,
-                            backgroundSize: 'cover',
-                        })
-                        Object.assign(themes.style, {
-                            background: `url('${_this.defaultBackgroundModal}')`,
-                            backgroundSize: 'cover',
-                        })
+        // handle when search
+        this.handleSearch()
 
-                        Object.assign(musicControl.style, {
-                            background: `url('${_this.defaultBackgroundModal}')`,
-                            backgroundSize: 'cover',
-                        })
-
-                        Object.assign(document.querySelector('.personal-content-music-btn-upload').style, {
-                            background: `url('${_this.defaultBackgroundModal}')`,
-                            backgroundSize: 'cover',
-                        })
-
-                        headerOptionsItems.forEach((headerOptionsItem) => {
-                            Object.assign(headerOptionsItem.style, {
-                                background: `url('${_this.defaultBackgroundModal}')`,
-                                backgroundSize: 'cover',
-                            })
-                        })
-
-                        themes.classList.add('hide')
-                        appElement.style.filter = 'brightness(100%)'
-                    }
-                }
-            })
-        },
-
-        start: function () {
-            // defined current song
-            this.defineProperties()
-
-            // load info / title ... song
-            this.loadCurrentSong()
-
-            // handle event in DOM
-            this.handleEvent()
-
-            // handle when to click personal option
-            this.personalHandle()
-
-            this.discoverHandle()
-            // handle when chose page
-            this.pageHandle()
-
-            // handle when search
-            this.handleSearch()
-
-            // handle when chose theme
-            this.handleThemes()
-        },
-    }
-    app.start()
+        // handle when chose theme
+        this.handleThemes()
+    },
 }
-
-main()
+app.start()
 
 function handleMarginContent() {
     // HANDLE MARGIN CONTENT
