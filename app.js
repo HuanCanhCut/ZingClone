@@ -737,7 +737,7 @@ async function main() {
                 _this.handleNextSlide()
             }
             setInterval(() => {
-                // _this.handleNextSlide()
+                _this.handleNextSlide()
             }, 2000)
         },
 
