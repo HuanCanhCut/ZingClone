@@ -46,6 +46,10 @@ const playlistItems = [...document.querySelectorAll('.playlist-container-item:no
 const discoverSlideContainer = document.querySelector('.discover-sliders')
 const discoverNextSlide = document.querySelector('.discover-next-slide')
 const discoverPrevSlide = document.querySelector('.discover-prev-slide')
+const discoverNewReleaseMusicBtn = document.querySelector('.discover-new-release-music')
+const discoverNewReleaseAlbumBtn = document.querySelector('.discover-new-release-album')
+const newReleaseMusicContainer = document.querySelector('.discover-new-release-content-item.music')
+const newReleaseAlbumContainer = document.querySelector('.discover-new-release-content-item.album')
 
 // animate cdthum rotate
 
@@ -348,7 +352,7 @@ const app = {
             singer: 'JOMBIE',
             time: '6 ngày trước',
             pathSong: './songs/list-song/JOMBIE - ĐẤT SÓC - OFFICIAL MV.mp3',
-            type: 'free',
+            type: 'vip',
             duration: '4:22',
         },
         // ------------- us -------------------
@@ -755,6 +759,84 @@ const app = {
         setInterval(() => {
             _this.handleNextSlide()
         }, 2000)
+
+        // khi click nút bài hát
+
+        discoverNewReleaseMusicBtn.onclick = function () {
+            Object.assign(discoverNewReleaseMusicBtn.style, {
+                background: '#5a1eae',
+                border: 'none',
+            })
+
+            Object.assign(discoverNewReleaseAlbumBtn.style, {
+                background: 'transparent',
+                border: '1px solid rgba(225, 225, 225, 0.5)',
+            })
+            newReleaseAlbumContainer.classList.add('active')
+            newReleaseMusicContainer.classList.add('active')
+        }
+
+        discoverNewReleaseAlbumBtn.onclick = function () {
+            Object.assign(discoverNewReleaseAlbumBtn.style, {
+                background: '#5a1eae',
+                border: 'none',
+            })
+
+            Object.assign(discoverNewReleaseMusicBtn.style, {
+                background: 'transparent',
+                border: '1px solid rgba(225, 225, 225, 0.5)',
+            })
+            newReleaseMusicContainer.classList.remove('active')
+            newReleaseAlbumContainer.classList.add('active')
+        }
+
+        const newReleaseMusic = this.songs.map((song, index) => {
+            if (index > 22 && index <= 34) {
+                return `
+                    <div class="discover-new-release-content-music-item">
+                        <div class="discover-new-release-content-music-item-image">
+                            <img src="${song.img}" alt="" class="discover-new-release-content-music-item-image-img"/>
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <div class="discover-new-release-content-music-item-body">
+                            <div class="discover-new-release-content-music-item-body-header">
+                                <span class="song-name">${song.title}</span>
+                                <img src="https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.7.34/static/media/vip-label.3dd6ac7e.svg" alt="" class="${song.type == 'vip' ? 'type-vip' : 'type-free'}" />
+                            </div>
+                            <div class="discover-new-release-content-music-item-body-singer">
+                                <p>${song.singer}</p>
+                            </div>
+                        </div>
+                        <div class="discover-new-release-content-music-item-options">
+                            <i class="fa-thin fa-ellipsis-stroke"></i>
+                        </div>
+                    </div>
+                `
+            }
+        })
+
+        const newReleaseAlbum = this.songs.map((song, index) => {
+            if (index > 23 && index <= 32) {
+                return `
+                    <div class="discover-new-release-content-album-item">
+                        <div class="discover-new-release-content-album-item-image">
+                            <img src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/album-disk.png" alt="" class="cd-rotate" />
+                            <img src="${song.img}" alt="" class="discover-new-release-content-album-item-image-img" />
+                        </div>
+                        <div class="discover-new-release-content-album-item-body">
+                            <p>${song.title}</p>
+                            <p>${song.singer}</p>
+                        </div>
+                        <div class="discover-new-release-content-album-item-options">
+                            <i class="fa-thin fa-ellipsis-stroke"></i>
+                        </div>
+                    </div>
+                `
+            }
+        })
+
+        newReleaseAlbumContainer.innerHTML = newReleaseAlbum.join('')
+        newReleaseMusicContainer.innerHTML = newReleaseMusic.join('')
     },
 
     handleNextSlide: function () {

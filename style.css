@@ -986,14 +986,12 @@ body::-webkit-scrollbar {
 
 .personal-slide {
     background-size: cover;
-    /* border: 1px solid #fff; */
     background-repeat: no-repeat;
     background-position: center center;
     position: absolute;
     border-radius: 10px;
     transition: all linear 0.7s;
     aspect-ratio: 1 / 1;
-    /* box-shadow: 5px 10px 40px rgb(128, 128, 128, 0.4); */
 }
 
 .personal-slide-first {
@@ -1399,4 +1397,263 @@ body::-webkit-scrollbar {
     left: 50%;
     transform: translateX(-54.5%);
     opacity: 0;
+}
+
+.discover-new-release {
+    padding: 16px 32px;
+}
+
+.discover-new-release-title h4 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.discover-new-release-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    padding: 12px 4px;
+}
+
+.discover-new-release-header span {
+    color: var(--color-small);
+    font-size: 14px;
+}
+
+.discover-new-release-header span i {
+    padding: 0 8px;
+}
+
+.discover-new-release-header span:hover {
+    color: var(--color-pink);
+}
+
+.discover-new-release-button button {
+    padding: 4px 16px;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    margin: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.discover-new-release-button button:first-child {
+    background-color: var(--background-music2);
+}
+
+.discover-new-release-button button:last-child {
+    background-color: transparent;
+    border: 1px solid var(--color-small);
+}
+
+.discover-new-release-content {
+    width: 100%;
+}
+
+.discover-new-release-content-item {
+    padding: 20px 16px;
+    display: none;
+}
+
+.discover-new-release-content-item.active {
+    display: block;
+}
+
+.discover-new-release-content-item.active.music {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.discover-new-release-content-music-item {
+    width: 33.33%;
+    box-sizing: border-box;
+    padding: 8px 16px;
+    margin: 4px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.1s linear;
+}
+
+.discover-new-release-content-music-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.discover-new-release-content-music-item-image {
+    width: 55px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.discover-new-release-content-music-item-image i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    opacity: 0;
+    transition: all 0.1s linear;
+}
+
+.discover-new-release-content-music-item-image-img {
+    transition: all 0.1s linear;
+}
+
+.discover-new-release-content-music-item:hover .discover-new-release-content-music-item-image-img {
+    filter: brightness(60%);
+}
+
+.discover-new-release-content-music-item:hover .discover-new-release-content-music-item-image i {
+    opacity: 1;
+}
+.discover-new-release-content-music-item-image img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.discover-new-release-content-music-item-body {
+    flex: 1;
+    padding: 0 12px;
+    color: #fff;
+    padding-left: 25px;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* số dòng hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.discover-new-release-content-music-item-body-header {
+    display: flex;
+    align-items: center;
+}
+
+.discover-new-release-content-music-item-body-header .type-vip {
+    margin: 0 8px;
+}
+
+.discover-new-release-content-music-item-body-header .type-free {
+    display: none;
+}
+
+.discover-new-release-content-music-item-body-singer {
+    font-size: 12px;
+    color: var(--color-small);
+    margin: 4px 0;
+}
+
+.discover-new-release-content-music-item-options {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.1s linear;
+}
+
+.discover-new-release-content-music-item:hover .discover-new-release-content-music-item-options {
+    opacity: 1;
+}
+
+.discover-new-release-content-music-item-options i {
+    font-size: 16px;
+    color: white;
+}
+
+.discover-new-release-content-item.active.album {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.discover-new-release-content-album-item {
+    width: 33.33%;
+    padding: 8px 16px;
+    margin: 4px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.discover-new-release-content-album-item:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.discover-new-release-content-album-item-image {
+    width: 75px;
+    aspect-ratio: 1 / 1;
+    position: relative;
+}
+
+.discover-new-release-content-album-item-image img {
+    width: 100%;
+    position: absolute;
+    transition: all linear 0.3s;
+    border-radius: 10px;
+}
+
+.discover-new-release-content-album-item-image img:first-child {
+    width: 90%;
+    top: 5%;
+    right: -20%;
+}
+
+.discover-new-release-content-album-item:hover .cd-rotate {
+    transform: rotate(80deg);
+}
+
+.discover-new-release-content-album-item:hover .discover-new-release-content-album-item-image-img {
+    transform: translateX(-10%);
+}
+
+.discover-new-release-content-album-item-body {
+    flex: 1;
+    padding-left: 25px;
+    color: #fff;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* số dòng hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.discover-new-release-content-album-item-body p:last-child {
+    font-size: 14px;
+    color: var(--color-small);
+    margin: 4px 0;
+}
+
+.discover-new-release-content-album-item-options {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: all 0.1s linear;
+}
+
+.discover-new-release-content-album-item:hover .discover-new-release-content-album-item-options {
+    opacity: 1;
+}
+
+.discover-new-release-content-album-item-options i {
+    font-size: 16px;
+    color: white;
 }
