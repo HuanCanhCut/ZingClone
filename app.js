@@ -78,6 +78,13 @@ const app = {
 
     songs: [
         {
+            title: 'Chúng ta sau này',
+            singer: 'T.R.I',
+            pathSong: './songs/list-song/chungtasaunay.mp3',
+            duration: '03:31',
+            img: 'https://avatar-ex-swe.nixcdn.com/song/share/2021/01/27/f/1/e/c/1611738359456.jpg',
+        },
+        {
             title: 'CÓ CHƠI CÓ CHỊU',
             singer: 'KARIK x ONLY C',
             pathSong: './songs/list-song/cochoicochiu.mp3',
@@ -86,12 +93,45 @@ const app = {
         },
 
         {
-            title: 'Chúng ta sau này',
-            singer: 'T.R.I',
-            pathSong: './songs/list-song/chungtasaunay.mp3',
-            duration: '03:31',
-            img: 'https://avatar-ex-swe.nixcdn.com/song/share/2021/01/27/f/1/e/c/1611738359456.jpg',
+            title: 'À Lôi',
+            singer: 'Double2T x Masew',
+            pathSong: 'https://res.cloudinary.com/phuockaito/video/upload/v1689439283/audio/qr3xh9afv5xmvmrurcs2.mp3',
+            duration: '3:13',
+            img: 'https://res.cloudinary.com/phuockaito/image/upload/v1689439283/image_music/vooas8x02r7rletmltw7.jpg',
         },
+
+        {
+            title: 'Để Anh Một Mình',
+            singer: 'Rhyder',
+            pathSong: 'https://res.cloudinary.com/phuockaito/video/upload/v1689087548/audio/izqfjaop3voeuqsu14fe.mp3',
+            duration: '3:12',
+            img: 'https://res.cloudinary.com/phuockaito/image/upload/v1689087547/image_music/jwtpgvwepyeai4fxf7di.jpg',
+        },
+
+        {
+            title: 'Về Quê',
+            singer: 'Mikelodic',
+            pathSong: 'https://res.cloudinary.com/phuockaito/video/upload/v1689087412/audio/dqysm1dwkw5k2vvp6yif.mp3',
+            duration: '2:55',
+            img: 'https://res.cloudinary.com/phuockaito/image/upload/v1689087412/image_music/fs2gqny5zwasqdcu6hoy.jpg',
+        },
+
+        {
+            title: 'Đất Và Lửa',
+            singer: 'Long Nón Lá',
+            pathSong: 'https://res.cloudinary.com/phuockaito/video/upload/v1689086599/audio/hzwekxyipcjhwva7jsaq.mp3',
+            duration: '3:08',
+            img: 'https://res.cloudinary.com/phuockaito/image/upload/v1689086598/image_music/ws6ajgilcsss34ihvn7z.jpg',
+        },
+
+        {
+            title: 'gió',
+            singer: 'Jank',
+            pathSong: 'https://res.cloudinary.com/phuockaito/video/upload/v1687522042/audio/zldfzq29iwom8vdwsnuw.mp3',
+            duration: '2:54',
+            img: 'https://res.cloudinary.com/phuockaito/image/upload/v1687522041/image_music/lx0zzltyih41rcxuqxm0.jpg',
+        },
+
         {
             img: 'https://baochauelec.com/cdn/images/tin-tuc/loi-bat-hat-waiting-for-you-ban-chuan.jpg',
             title: 'Waiting For You',
@@ -1011,7 +1051,7 @@ const app = {
 
                 if (e.target.closest(`#${pageId}`)) {
                     if (pageId === 'follow') {
-                        alert('Page này chưa có ^^')
+                        confirm('Page này chưa có ^^')
                     } else if (pageId === 'personal') {
                         musicControl.classList.remove('hide')
                         if (document.querySelector(`.page-item.active`)) {
