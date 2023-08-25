@@ -1117,10 +1117,12 @@ body::-webkit-scrollbar {
     top: 50%;
     transform: translateY(-50%);
     transition: all 0.1s linear;
+    opacity: 0;
 }
 
 .playlist-container-item-image:hover .playlist-container-item-option {
     width: 100%;
+    opacity: 1;
 }
 
 .playlist-container-item-content {
@@ -1187,9 +1189,11 @@ body::-webkit-scrollbar {
     font-size: 24px;
     overflow: hidden;
     transition: all 0.1s linear;
+    opacity: 0;
 }
 
 .mv-container-item-image:hover .mv-container-item-option {
+    opacity: 1;
     width: 100%;
 }
 
@@ -1319,6 +1323,10 @@ body::-webkit-scrollbar {
 .artist-item-content button i {
     margin-right: 8px;
     font-size: 10px;
+}
+
+.page-item.discover {
+    padding-bottom: 20px;
 }
 
 .discover-slider {
@@ -1656,4 +1664,150 @@ body::-webkit-scrollbar {
 .discover-new-release-content-album-item-options i {
     font-size: 16px;
     color: white;
+}
+
+.discover-friday {
+    padding: 8px 32px;
+}
+
+.discover-firday-title p {
+    color: #fff;
+    font-size: 16px;
+}
+
+.discover-friday-container {
+    width: 100%;
+    padding: 20px 16px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-around;
+}
+
+.discover-friday-cotainer-item {
+    width: 25%;
+    padding: 0 16px;
+}
+
+.discover-friday-cotainer-item-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+}
+
+.discover-friday-container-item-options {
+    width: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.1s linear;
+    opacity: 0;
+}
+
+.discover-friday-cotainer-item-image:hover .discover-friday-container-item-options {
+    width: 100%;
+    opacity: 1;
+}
+
+.discover-friday-container-item-options i {
+    font-size: 20px;
+}
+
+.discover-friday-cotainer-item-image img {
+    width: 100%;
+    transition: all ease-in-out 0.5s;
+}
+
+.discover-friday-cotainer-item-image:hover img {
+    scale: 110%;
+    filter: brightness(50%);
+}
+
+.discover-friday-cotainer-item-info p:first-child {
+    margin-top: 8px;
+    margin-left: 2px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.discover-friday-cotainer-item-info p:last-child {
+    color: var(--color-small);
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.discover-new-music-everyday {
+    width: 100%;
+    padding: 20px 16px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-around;
+}
+
+.discover-zingchart {
+    width: 100%;
+    padding: 32px;
+}
+
+.discover-zingchart-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.discover-zingchart-header li {
+    width: 33.33%;
+    aspect-ratio: 4 / 1;
+    padding: 0 8px;
+    list-style: none;
+}
+
+.discover-zingchart-header-item {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.discover-zingchart-header-item img {
+    transition: all linear 0.3s;
+    width: 100%;
+}
+
+.discover-zingchart-header-item:hover img {
+    scale: 110%;
+    border-radius: 10px;
+}
+
+.discover-zingchart-body {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 32px 0;
+}
+
+.discover-zingchart-body li {
+    list-style: none;
+    width: 25%;
+    padding: 0 16px;
+    aspect-ratio: 1 / 1;
+}
+
+.discover-zingchart-body-item {
+    width: 100%;
+    height: 100%;
+}
+
+.discover-zingchart-body-item img {
+    width: 100%;
+    transition: all 0.1s linear;
+}
+
+.discover-zingchart-body-item:hover img {
+    filter: brightness(70%);
 }

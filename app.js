@@ -740,6 +740,67 @@ const app = {
         { img: './img/discover/ctn1/7.jpg' },
         { img: './img/discover/ctn1/8.jpg' },
     ],
+    discover2: [
+        {
+            img: './img/discover/ctn3/1.webp',
+            title: "Trang's Love Again Story",
+            content: 'Cùng Trang nhìn lại những câu chuyện phía sau album',
+        },
+        {
+            img: './img/discover/ctn3/2.webp',
+            title: 'Sing Along US-UK',
+            content: 'Cùng hát theo những ca khúc Âu Mỹ dễ nhớ dễ thuộc này',
+        },
+        {
+            img: './img/discover/ctn3/3.webp',
+            title: 'Love In The Way',
+            content: 'Bleu,Nicki Minaj',
+        },
+        {
+            img: './img/discover/ctn3/4.webp',
+            title: 'Pop Ballad Việt Nổi Bật',
+            content: "Hà Nhi và những bản Ballad Việt 'tốn nước mắt nhất'",
+        },
+    ],
+
+    discover3: [
+        {
+            img: './img/discover/ctn4/1.webp',
+            title: 'V-Pop Tháng 9/2022',
+            content: 'Vương Anh Tú,Sơn Tùng MTP',
+        },
+        {
+            img: './img/discover/ctn4/2.webp',
+            title: 'US-UK Tháng 9/2022',
+            content: 'Elton John,Britney Spears,Carly Rae Jepsen',
+        },
+        {
+            img: './img/discover/ctn4/3.webp',
+            title: 'K-Pop Tháng 9/2022',
+            content: 'BLACKPINK,IVE,ONEUS',
+        },
+        {
+            img: './img/discover/ctn4/4.webp',
+            title: 'C-Pop Tháng 9/2022',
+            content: 'Trần Lập Nông,周深 / Châu Thâm,Christopher Wu',
+        },
+    ],
+
+    discover4: [
+        //
+        { img: './img/discover/ctn5/header/1.jpg' },
+        { img: './img/discover/ctn5/header/2.jpg' },
+        { img: './img/discover/ctn5/header/3.jpg' },
+    ],
+
+    discover5: [
+        //
+        { img: './img/discover/ctn5/body/0.png' },
+        { img: './img/discover/ctn5/body/1.png' },
+        { img: './img/discover/ctn5/body/2.png' },
+        { img: './img/discover/ctn5/body/4.png' },
+        { img: './img/discover/ctn5/body/5.png' },
+    ],
 
     discoverHandle: function () {
         const _this = this
@@ -751,7 +812,7 @@ const app = {
         discoverSlideContainer.innerHTML = htmls.join('')
 
         discoverNextSlide.onclick = function () {
-            _this.handleNextSlide(_this.discoverSlideIndex)
+            _this.handleNextSlide()
         }
         discoverPrevSlide.onclick = function () {
             _this.handleNextSlide()
@@ -772,7 +833,7 @@ const app = {
                 background: 'transparent',
                 border: '1px solid rgba(225, 225, 225, 0.5)',
             })
-            newReleaseAlbumContainer.classList.add('active')
+            newReleaseAlbumContainer.classList.remove('active')
             newReleaseMusicContainer.classList.add('active')
         }
 
@@ -837,6 +898,92 @@ const app = {
 
         newReleaseAlbumContainer.innerHTML = newReleaseAlbum.join('')
         newReleaseMusicContainer.innerHTML = newReleaseMusic.join('')
+
+        // thứ sáu đây rồi
+
+        const firday = this.discover2.map((slide) => {
+            return `
+                <div class="discover-friday-cotainer-item">
+                    <div class="discover-friday-cotainer-item-image">
+                        <img src="${slide.img}" alt="" />
+                        <div class="discover-friday-container-item-options">
+                            <i class="fa-solid fa-heart"></i>
+                            <i class="fa-solid fa-play"></i>
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </div>
+                    </div>
+                    <div class="discover-friday-cotainer-item-info">
+                        <p>${slide.title}</p>
+                        <p>${slide.content}</p>
+                    </div>
+                </div>
+            `
+        })
+
+        const newMusicEveryday = this.discover3.map((slide) => {
+            return `
+                <div class="discover-friday-cotainer-item">
+                    <div class="discover-friday-cotainer-item-image">
+                        <img src="${slide.img}" alt="" />
+                        <div class="discover-friday-container-item-options">
+                            <i class="fa-solid fa-heart"></i>
+                            <i class="fa-solid fa-play"></i>
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </div>
+                    </div>
+                    <div class="discover-friday-cotainer-item-info">
+                        <p>${slide.title}</p>
+                        <p>${slide.content}</p>
+                    </div>
+                </div>
+            `
+        })
+
+        document.querySelector('.discover-new-music-everyday').innerHTML = newMusicEveryday.join('')
+        document.querySelector('.discover-friday-container').innerHTML = firday.join('')
+
+        const fridayItems = [...document.querySelectorAll('.discover-friday-cotainer-item-image')]
+
+        fridayItems.forEach((fridayItem) => {
+            fridayItem.onclick = function (e) {
+                if (e.target.closest('.discover-friday-cotainer-item-image')) {
+                    // hide page acitve and show player
+                    player.classList.remove('hide')
+                    if (!player.classList.contains('hide')) {
+                        document.querySelector('.page-item.active').classList.remove('active')
+                    }
+
+                    musicControl.classList.remove('hide')
+                }
+            }
+        })
+        const discoverZingchartHeader = this.discover4.map((slide) => {
+            return `
+                <li>
+                    <div class="discover-zingchart-header-item">
+                        <img src="${slide.img}" alt="" />
+                    </div>
+                </li>
+            `
+        })
+
+        const discoverZingchartBody = this.discover5.map((slide) => {
+            return `
+                <li>
+                    <div class="discover-zingchart-body-item">
+                        <img src="${slide.img}" alt="" />
+                    </div>
+                </li>
+            `
+        })
+
+        document.querySelector('.discover-zingchart-body').innerHTML = discoverZingchartBody.join('')
+        document.querySelector('.discover-zingchart-header').innerHTML = discoverZingchartHeader.join('')
+    },
+
+    zingchartHandle: async function () {
+        const reponse = await fetch(trendingAPI)
+        const data = await reponse.json()
     },
 
     handleNextSlide: function () {
@@ -1177,6 +1324,9 @@ const app = {
         this.personalHandle()
 
         this.discoverHandle()
+
+        this.zingchartHandle()
+
         // handle when chose page
         this.pageHandle()
 
