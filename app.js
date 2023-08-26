@@ -23,6 +23,7 @@ const randomButton = document.querySelector('.btn-random')
 const repeatButton = document.querySelector('.btn-repeat')
 const headerOptionsItems = [...document.querySelectorAll('.header-options-item')]
 const playListSuggests = document.querySelector('.player-list-suggest')
+const pageItems = [...document.querySelectorAll('.page-item')]
 
 // page-item
 
@@ -64,8 +65,6 @@ const cdThumbInfoAnimate = musicControlCurrentImage.animate([{ transform: 'rotat
 })
 cdThumbAnimate.pause()
 cdThumbInfoAnimate.pause()
-
-const trendingAPI = ' https://api-kaito-music.vercel.app/api/music/trending?_limit=20&_page=1'
 
 const app = {
     // defined default properties
@@ -642,6 +641,12 @@ const app = {
                 audio.play()
             }
         }
+
+        // hide music control
+
+        document.querySelector('.fa-caret-down').onclick = function () {
+            musicControl.classList.add('hide')
+        }
     },
 
     playList: [],
@@ -1021,9 +1026,97 @@ const app = {
         document.querySelector('.discover-zingchart-header').innerHTML = discoverZingchartHeader.join('')
     },
 
-    zingchartHandle: async function () {
-        const reponse = await fetch(trendingAPI)
-        const data = await reponse.json()
+    zingchartHandle: function (obj, start, end) {
+        const _this = this
+        const top100 = this.songs.map((song, index) => {
+            if (index <= 100) {
+                return `
+                <li class="zingchart-content-item" data-index="${index}">
+                    <div class="zingchart-content-item-index">
+                        <h1 class="${index == 0 ? 'number-one' : index == 1 ? 'number-two' : index == 2 ? 'number-three' : ''}">${(index += 1)}</h1>
+                    </div>
+                    <div class="zingchart-content-item-body">
+                        <i class="fa-solid fa-minus"></i>
+                        <div class="zingchart-content-item-body-image">
+                            <img src="${song.img}" alt="" />
+                        </div>
+                        <div class="zingchart-content-item-body-music">
+                            <p>${song.title}</p>
+                            <p>${song.singer}</p>
+                        </div>
+                        <div class="zingchart-content-item-body-info">
+                            <p>${song.title} (${song.singer})</p>
+                        </div>
+                        <div class="zingchart-content-item-body-duration">${song.duration}</div>
+                    </div>
+                </li>
+            `
+            }
+        })
+        document.querySelector('.zingchart-content').innerHTML = top100.join('')
+
+        const zingchartContentItems = [...document.querySelectorAll('.zingchart-content-item')]
+
+        function playClick(targetItem) {
+            if (targetItem) {
+                _this.currentIndex = Number(targetItem.getAttribute('data-index'))
+                _this.loadCurrentSong()
+                audio.play()
+                musicControl.classList.remove('hide')
+            }
+        }
+
+        zingchartContentItems.forEach((zingchartContentItem) => {
+            zingchartContentItem.onclick = function (e) {
+                const targetItem = e.target.closest('.zingchart-content-item')
+                playClick(targetItem)
+            }
+        })
+
+        const seemoreButton = document.querySelector('.see-more-btn')
+        seemoreButton.onclick = function () {
+            const zingchartContent = document.querySelector('.zingchart-content')
+            const zingchartContentLimit = document.querySelector('.zingchart-content.zingchart-content-limit')
+            if (zingchartContentLimit) {
+                zingchartContentLimit.classList.remove('zingchart-content-limit')
+                seemoreButton.innerText = 'Rút Gọn'
+            } else {
+                zingchartContent.classList.add('zingchart-content-limit')
+                seemoreButton.innerText = 'Xem Thêm'
+            }
+        }
+
+        let i = 1
+        const topWeek = this.songs.map((song, index) => {
+            if (index >= start && index <= end) {
+                return `
+                    <li class="zingchart-top-week-body-item" data-index="${index}">
+                        <div class="zingchart-top-week-body-index">
+                            <h1 class="${index == start ? 'number-one' : index == start + 1 ? 'number-two' : index == start + 2 ? 'number-three' : ''}">${i++}</h1>
+                        </div>
+                        <i class="fa-solid fa-minus"></i>
+                        <div class="zingchart-top-week-body-img">
+                            <img src="${song.img}" alt="" />
+                        </div>
+                        <div class="zingchart-top-week-body-music">
+                            <p>${song.title}</p>
+                            <p>${song.singer}</p>
+                        </div>
+                    </li>
+                `
+            }
+        })
+
+        obj.innerHTML = topWeek.join('')
+
+        const topWeekItems = [...document.querySelectorAll('.zingchart-top-week-body-item')]
+
+        topWeekItems.forEach((topWeekItem) => {
+            topWeekItem.onclick = function (e) {
+                const targetItem = e.target.closest('.zingchart-top-week-body-item')
+                playClick(targetItem)
+            }
+        })
     },
 
     handleNextSlide: function () {
@@ -1174,7 +1267,11 @@ const app = {
 
                                 player.classList.remove('hide')
                                 if (!player.classList.contains('hide')) {
-                                    document.querySelector('.page-item.active').classList.remove('active')
+                                    pageItems.forEach((pageItem) => {
+                                        if (pageItem.className.includes('active')) {
+                                            document.querySelector('.page-item.active').classList.remove('active')
+                                        }
+                                    })
                                 }
 
                                 musicControl.classList.remove('hide')
@@ -1247,7 +1344,7 @@ const app = {
         },
         {
             name: 'Rosé',
-            img: './background/backroundThemes/2.jpg',
+            img: './img/rosebackground.jpg',
             modalTheme: './background/modalThemes/modalTheme2/theme1.jpg',
             backgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
         },
@@ -1365,7 +1462,10 @@ const app = {
 
         this.discoverHandle()
 
-        this.zingchartHandle()
+        this.zingchartHandle(document.querySelector('.zingchart-top-week-content-item-body'), 10, 14)
+        this.zingchartHandle(document.querySelector('.zingchart-top-week-content-item-body.vietnam'), 10, 14)
+        this.zingchartHandle(document.querySelector('.zingchart-top-week-content-item-body.us-uk'), 20, 24)
+        this.zingchartHandle(document.querySelector('.zingchart-top-week-content-item-body.k-pop'), 30, 34)
 
         // handle when chose page
         this.pageHandle()
