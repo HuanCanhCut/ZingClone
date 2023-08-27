@@ -1981,8 +1981,8 @@ body::-webkit-scrollbar {
     flex: 1;
     max-width: 32%;
     padding: 20px 10px;
-    border-radius: 10px;
-    background-color: rgba(225, 225, 225, 0.08);
+    border-radius: 15px;
+    background-color: rgba(225, 225, 225, 0.05);
 }
 
 .zingchart-top-week-content-item-title {
@@ -2017,6 +2017,11 @@ body::-webkit-scrollbar {
     margin-top: 10px;
     display: flex;
     align-items: center;
+    transition: all linear 0.1s;
+}
+
+.zingchart-top-week-content-item-body li:hover {
+    background-color: rgba(225, 225, 225, 0.05);
 }
 
 .zingchart-top-week-content-item-body li i {

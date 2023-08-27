@@ -128,7 +128,7 @@ const app = {
             singer: 'Jank',
             pathSong: 'https://res.cloudinary.com/phuockaito/video/upload/v1687522042/audio/zldfzq29iwom8vdwsnuw.mp3',
             duration: '2:54',
-            img: 'https://res.cloudinary.com/phuockaito/image/upload/v1687522041/image_music/lx0zzltyih41rcxuqxm0.jpg',
+            img: 'https://i.ytimg.com/vi/igoE062z76U/maxresdefault.jpg',
         },
 
         {
@@ -1462,6 +1462,7 @@ const app = {
 
         this.discoverHandle()
 
+        // render top week
         this.zingchartHandle(document.querySelector('.zingchart-top-week-content-item-body'), 10, 14)
         this.zingchartHandle(document.querySelector('.zingchart-top-week-content-item-body.vietnam'), 10, 14)
         this.zingchartHandle(document.querySelector('.zingchart-top-week-content-item-body.us-uk'), 20, 24)
