@@ -1311,31 +1311,6 @@ const app = {
     // THEMES
 
     dynamicThemes: [
-        // {
-        //     name: 'Default theme',
-        //     img: './background/backroundThemes/11.jpg',
-        //     modalTheme: './background/backroundThemes/11.jpg',
-        //     backgroundModal: './background/modalThemes/modalTheme3/theme1.jpg',
-        // },
-        // {
-        //     name: 'Lan Anh ',
-        //     img: './background/backroundThemes/9.jpg',
-        //     modalTheme: './background/backroundThemes/9.jpg',
-        //     backgroundModal: './background/modalThemes/modalTheme3/theme8.jpg',
-        // },
-        // {
-        //     name: 'Lan Anh 2',
-        //     img: './img/background.jpg',
-        //     modalTheme: './img/background.jpg',
-        //     backgroundModal: './background/modalThemes/modalTheme3/theme2.jpg',
-        // },
-
-        // {
-        //     name: 'Lan Anh 3',
-        //     img: './background/backroundThemes/10.jpg',
-        //     modalTheme: './background/backroundThemes/10.jpg',
-        //     backgroundModal: './background/modalThemes/modalTheme3/theme8.jpg',
-        // },
         {
             name: 'Tháp Eiffel',
             img: './background/backroundThemes/1.jpg',
